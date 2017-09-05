@@ -7,10 +7,12 @@ import Mision from '@/components/Mision'
 import Productos from '@/components/Productos'
 import Contacto from '@/components/Contacto'
 import Menu from '@/components/ui/CarritoMenu'
+import ParaLlevarDaysMenu from '@/components/ui/ParaLlevarDaysMenu'
+import ParaLlevarDayMenu from '@/components/ParaLlevarDayMenu'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: process.env.NODE_ENV === 'production' ? 'history' : '',
   routes: [
     {
@@ -48,9 +50,25 @@ export default new Router({
       name: 'Para Llevar',
       component: ParaLlevar
     },
-
+    {
+      path: '/para-llevar/days-menu',
+      name: 'Para Llevar Days Menu',
+      component: ParaLlevarDaysMenu
+    },
+    {
+      path: '/para-llevar/:day',
+      name: 'Menú del día',
+      component: ParaLlevarDayMenu
+    },
     {
       path: '*', redirect: '/'
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  router.history.previous = from
+  next()
+})
+
+export default router

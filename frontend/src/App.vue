@@ -1,7 +1,7 @@
 <template>
-  <main id="app">
+  <main id="app" :class="{fullscreen: this.$route.name !== 'Menu' && this.$route.name !== 'Logo'}">
     <router-view></router-view>
-    <carrito-nav v-if="this.$router.history.current.path !== '/menu'"></carrito-nav>
+    <carrito-nav></carrito-nav>
   </main>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<section id="menu">
+	<section class="isolated-nav">
  		<nav>
 			<router-link to="para-llevar"><button>Para llevar</button></router-link>
 			<router-link to="productos"><button>Productos</button></router-link>
