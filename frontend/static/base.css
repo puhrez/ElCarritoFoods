@@ -1,0 +1,223 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FAFAFA;
+}
+
+main > section {
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+svg {
+    height: 100%;
+    width: 100%;
+}
+
+nav.primary {
+    height: 18%;
+    background-color: #262626;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 15px #262626;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+nav button {
+    height: 100%;
+    width: 100%;
+    color: #FAFAFA;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16vw;
+    background-color: #262626;
+    transition: background-color .15s;
+}
+
+nav.primary > a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+nav.primary button:hover {
+    background-color: #878787;
+}
+
+nav.primary > a.large {
+    display: none;
+}
+
+#menu {
+    height: 100%;
+}
+
+#menu > nav {
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+    box-shadow: 0 2px 15px #262626;
+    justify-content: space-between;
+}
+#menu a {
+    height: 20%;
+}
+#menu button {
+    font-size: 8vw;
+    color: #262626;
+    background-color: #c6c6c6;
+}
+#menu button:hover {
+    background-color: #878787;
+}
+
+
+article {
+    text-align: left;
+    width: 80%;
+    height: 90%;
+}
+article > header > h2 {
+    color: #262626;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 3vh;
+    font-size: 200%;
+}
+article > p {
+    color: #262626;
+    font-family: 'Press Start 2P', cursive;
+
+}
+@media (min-width: 420px) and (orientation: landscape) {
+    nav button  {
+	font-size: 13vw;
+    }
+}
+@media (min-width: 540px) and (orientation: landscape) {
+    nav button {
+	font-size: 14vw;
+    }
+}
+
+@media (min-width: 620px) {
+    nav button {
+	font-size: 11vw;
+    }
+    #menu a > button {
+	font-size: 7vw;
+    }
+
+}
+
+@media (min-width: 750px) {
+    nav button {
+	font-size: 9vw;
+    }
+
+}
+
+@media (min-width: 830px) {
+    nav button {
+	font-size: 8vw;
+    }
+    #menu a >button  {
+	font-size: 5vw;
+    }
+
+}
+
+@media (min-width: 1050px) {
+    main {
+	flex-direction: row;
+    }
+
+    main > section {
+	width: 75%;
+	height: 100%;
+    }
+
+    nav.primary > a.small {
+	display: none;
+    }
+    nav.primary > a.large {
+	display: inherit;
+    }
+    nav.primary {
+	height: 100%;
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+
+    }
+    nav.primary > button {
+	width: 100%;
+	border-radius: 5px;
+    }
+    nav button {
+	font-size: 2vw;
+    }
+
+    #menu {
+	width: 100%;
+    }
+    article {
+	width: 90%;
+    }
+}
