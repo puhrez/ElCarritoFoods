@@ -51,14 +51,20 @@ const router = new Router({
       component: ParaLlevar
     },
     {
-      path: '/para-llevar/days-menu',
-      name: 'Para Llevar Days Menu',
-      component: ParaLlevarDaysMenu
+      path: '/para-llevar/days/:day',
+      name: 'Para Llevar Day',
+      component: ParaLlevar,
+      children: [
+        {
+          path: '',
+          component: ParaLlevarDayMenu
+        }
+      ]
     },
     {
-      path: '/para-llevar/:day',
-      name: 'Menú del día',
-      component: ParaLlevarDayMenu
+      path: '/para-llevar/days',
+      name: 'Para Llevar Days Menu',
+      component: ParaLlevarDaysMenu
     },
     {
       path: '*', redirect: '/'

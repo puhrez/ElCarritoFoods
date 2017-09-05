@@ -2,10 +2,10 @@
 	<section id="para-llevar-day">
 		<article>
 			<header>
-				<h2>{{ $route.params.name }}</h2>
+				<h2>{{ $route.params.day }}</h2>
 			</header>
 			<ol>
-				<li v-for="item in items"></li>
+				<li v-for="item in items">{{ item }}</li>
 			</ol>
 		</article>
 	</section>

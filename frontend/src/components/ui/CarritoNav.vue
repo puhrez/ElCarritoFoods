@@ -1,11 +1,11 @@
 <template>
   <nav class="primary">
 		<router-link class="small center" :to="appropriate_route.path"><button>{{appropriate_route.name}}</button></router-link>
-		<router-link class="large" to="para-llevar"><button>Para llevar</button></router-link>
-    <router-link class="large" to="productos"><button >Productos</button></router-link>
-    <router-link class="large" to="catering"><button>Catering</button></router-link>
-    <router-link class="large" to="mision"><button>Misión</button></router-link>
-    <router-link class="large" to="contacto"><button>Contacto</button></router-link>
+		<router-link class="large" to="/para-llevar"><button>Para llevar</button></router-link>
+    <router-link class="large" to="/productos"><button >Productos</button></router-link>
+    <router-link class="large" to="/catering"><button>Catering</button></router-link>
+    <router-link class="large" to="/mision"><button>Misión</button></router-link>
+    <router-link class="large" to="/contacto"><button>Contacto</button></router-link>
 	</nav>
 </template>
 
@@ -27,9 +27,10 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      if (to.name === 'Menu' || to.path.split('/').length === 2) {
+      let path = to.path.split('/')
+      if (to.name === 'Menu' || path.length <= 2) {
         this.appropriate_route = {path: '/menu', name: 'Menu'}
-      } else { this.appropriate_route = {path: from.path, name: 'Volver'} }
+      } else { this.appropriate_route = {path: path.slice(0, path.length - 1).join('/'), name: 'Volver'} }
     }
   }
 }
