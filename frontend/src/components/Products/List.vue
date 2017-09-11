@@ -4,7 +4,7 @@
 			<router-link to="/products/product/adobo"><button>El Adobo</button></router-link>
 			<router-link to="/products/product/sazon"><button>El Sazón</button></router-link>
 		</nav>
-		<router-link class="small" v-if="!!items.size" to="/products/order-review"><button class="doable">Ordenar</button></router-link>
+		<router-link class="small" v-if="!!Object.keys(items).length" to="/products/order-review"><button class="doable">Ordenar</button></router-link>
 	</section>
 </template>
 

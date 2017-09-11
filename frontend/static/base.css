@@ -55,6 +55,7 @@ main {
     transition: height .15s;
     display: flex;
     flex-direction: column;
+    font-family: 'Press Start 2P', sans-serif;
     height: 100vh;
     background-color: #FAFAFA;
 }
@@ -72,9 +73,6 @@ section section {
     height: 100%;
 }
 
-.fullscreen {
-    height: 121.5vh;
-}
 
 svg {
     height: 100%;
@@ -91,6 +89,16 @@ nav {
     box-shadow: 0 0 10px #262626;
 }
 
+a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+nav > .large, .large {
+    display: none;
+}
+
 button {
     height: 100%;
     width: 100%;
@@ -101,9 +109,10 @@ button {
     transition: background-color .15s;
 }
 
-button:hover {
+button:hover, button:disabled {
     background-color: #878787;
 }
+
 
 section button.doable {
     background-color: #549c57;
@@ -121,44 +130,31 @@ section button.undoable:hover {
     background-color: #ce4844;
 }
 
-a {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-}
-
-nav > .large, .large {
-    display: none;
-}
 
 section.isolated-nav {
     height: 100%;
 }
-.spaced-between {
-    justify-content: space-between;
-}
-.spaced-between nav {
-    margin-top: 10%;
-}
-.isolated-nav nav {
-    display: flex;
-    flex-direction: column;
-    animation: from-above-animation .15s linear forwards;
-    height: auto;
-    width: 85%;
-}
-.isolated-nav a {
-    height: 15vh;
-}
-
-.isolated-nav button {
-    font-size: 8vw;
-    color: #262626;
+section nav.small button {
+    font-size: 5vh;
     background-color: #c6c6c6;
+    color: #262626;
 }
 
-.isolated-nav button:hover {
+section nav.small button:hover {
     background-color: #878787;
+}
+
+section > section > a button.doable {
+    font-size: 7vh;
+    color: #FAFAFA;
+    box-shadow: 0 0 10px #262626;
+}
+
+section > section > article > button {
+    box-shadow: 0 0 10px #262626;
+    margin-top: 3vh;
+    font-size: 8vw;
+    height: 20%;
 }
 
 section section article {
@@ -188,7 +184,7 @@ article > header > h2 {
 article > h4 {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
-    margin-top: 4vh;
+    margin-left: -.5vw;
     margin-bottom: 2vh;
     font-size: 120%;
 }
@@ -206,15 +202,42 @@ article > p, article li {
     line-height: 120%;
 }
 
-section nav.small button {
-    font-size: 5vh;
-    background-color: #c6c6c6;
-    color: #262626;
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fullscreen {
+    height: 121.5vh;
 }
 
-section nav.small button:hover {
+.spaced-between {
+    justify-content: space-between;
+}
+.spaced-between nav {
+    margin-top: 10%;
+}
+.isolated-nav nav {
+    display: flex;
+    flex-direction: column;
+    animation: from-above-animation .15s linear forwards;
+    height: auto;
+    width: 85%;
+}
+.isolated-nav a {
+    height: 15vh;
+}
+
+.isolated-nav button {
+    font-size: 8vw;
+    color: #262626;
+    background-color: #c6c6c6;
+}
+
+.isolated-nav button:hover {
     background-color: #878787;
 }
+
 
 #para-llevar > button {
     height: 15%;
@@ -223,18 +246,6 @@ section nav.small button:hover {
     opacity: 0;
 }
 
-section > section > a button.doable {
-    font-size: 7vh;
-    color: #FAFAFA;
-    box-shadow: 0 0 10px #262626;
-}
-
-section > section > article > button {
-    box-shadow: 0 0 10px #262626;
-    margin-top: 3vh;
-    font-size: 8vw;
-    height: 20%;
-}
 
 #order-review li {
     display: flex;

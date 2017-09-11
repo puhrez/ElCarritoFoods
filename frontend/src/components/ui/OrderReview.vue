@@ -5,11 +5,12 @@
 				<h2>Tu pedido</h2>
 				<hr>
 			</header>
-			<ul>
-				<li class="ordered" v-for="item in $props.items.toJSON()">{{ item }}<button @click="remove" class="undoable">X</button></li>
+			<ul v-if="Object.keys(items).length">
+				<li class="ordered" v-for="itemQuantity in Object.entries(items)">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="remove" class="undoable">X</button></li>
 			</ul>
+			<p v-else>¡Todavía no aceptamos donaciones so pedí algo!</p>
 		</article>
-		<a><button class="doable" v-if="!!items.size">Pagar</button></a>
+		<a><button class="doable" v-if="!!Object.keys(items).length">Pagar</button></a>
 	</section>
 </template>
 
@@ -21,7 +22,8 @@ export default {
   methods: {
     remove (e) {
       e.target.parentNode.remove()
-      this.$emit('unreserve', e.target.parentNode.firstChild.data)
+      let itemKey = e.target.parentNode.firstChild.data.split(' ')[0]
+      this.$emit('unreserve', itemKey)
     }
   }
 }

@@ -7,11 +7,14 @@
 				<hr>
 			</header>
 			<p>¡Desenchufá el microhonda y dejáte llevar por las ricas comidas del Carrito Foods!</p>
+			<br>
 			<h4>Instrucciones</h4>
-			<p>Reservá y ordená tus platos através del Calendario. Al pagar, podés eligir la cantidad de platos.</p>
-			<p>Después que se registre tu orden, recibirás un email con los detalles de la recogida</p>
+			<p>Reservá y ordená tus almuerzos a través del Calendario.</p>
+			<p>Después que se registre tu orden recibirás un email con los detalles de la recogida.</p>
+			<br>
+			<p>¡Buen provecho!</p>
 		</article>
-		<router-view :class="{ 'spaced-between': !!daysReserved.size }" :items="daysReserved" @reserve="addToCart" @unreserve="removeFromCart" v-else></router-view>
+		<router-view :class="{ 'spaced-between': !!Object.keys(daysReserved).length }" :items="daysReserved" @reserve="addToCart" @unreserve="removeFromCart" v-else></router-view>
 		<para-llevar-nav :items="daysReserved" v-if="$route.path !== '/para-llevar/calendar' && $route.path !== '/para-llevar/order-review'" class="small"></para-llevar-nav>
 	</section>
 
@@ -27,16 +30,16 @@ export default {
   },
   data () {
     return {
-      daysReserved: new Set()
+      daysReserved: {}
     }
   },
   methods: {
-    addToCart (day) {
-      this.daysReserved.add(day)
+    addToCart (day, quantity) {
+      this.daysReserved[day] = quantity || 1
     },
     removeFromCart (day) {
-      this.daysReserved.delete(day)
-      if (!this.daysReserved.size && !this.$route.path.includes('menu')) { this.$router.push('/para-llevar') }
+      delete this.daysReserved[day]
+      if (!Object.keys(this.daysReserved).length && !this.$route.path.includes('menu')) { this.$router.push('/para-llevar') }
     }
   }
 }
