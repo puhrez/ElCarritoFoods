@@ -91,5 +91,9 @@ router.beforeEach((to, from, next) => {
   router.history.previous = from
   next()
 })
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
+  next()
+})
 
 export default router
