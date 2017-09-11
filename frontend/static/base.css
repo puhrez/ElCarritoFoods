@@ -69,6 +69,7 @@ section {
 
 section section {
     width: 100%;
+    height: 100%;
 }
 
 .fullscreen {
@@ -89,37 +90,62 @@ nav {
     align-items: center;
     box-shadow: 0 0 10px #262626;
 }
-nav button {
+
+button {
     height: 100%;
     width: 100%;
     color: #FAFAFA;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     font-size: 16vw;
     background-color: #262626;
     transition: background-color .15s;
 }
 
-nav > a {
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-
-}
-nav button:hover {
+button:hover {
     background-color: #878787;
 }
 
-nav > .large {
+section button.doable {
+    background-color: #549c57;
+}
+
+section button.doable:hover {
+    background-color: #48b54c;
+}
+
+section button.undoable {
+    background-color: #E53935;
+}
+
+section button.undoable:hover {
+    background-color: #ce4844;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+nav > .large, .large {
     display: none;
 }
 
-
+section.isolated-nav {
+    height: 100%;
+}
+.spaced-between {
+    justify-content: space-between;
+}
+.spaced-between nav {
+    margin-top: 10%;
+}
 .isolated-nav nav {
     display: flex;
     flex-direction: column;
-    width: initial;
-    justify-content: space-between;
+    animation: from-above-animation .15s linear forwards;
     height: auto;
+    width: 85%;
 }
 .isolated-nav a {
     height: 15vh;
@@ -136,38 +162,101 @@ nav > .large {
 }
 
 section section article {
+    animation: from-left-animation .15s linear forwards;
     height: 100%;
 }
 
 article {
+    animation: from-bottom-animation .15s linear forwards;
     text-align: left;
-    width: 80%;
+    width: 90%;
     height: 90%;
 }
+article > button {
+    border-radius: 5px;
+    height: 16vh;
+}
+
+
 article > header > h2 {
     color: #262626;
-    font-family: 'Press Start 2P', cursive;
-    margin-bottom: 3vh;
+    font-family: 'Press Start 2P', sans-serif;
+    margin-bottom: 2vh;
     font-size: 200%;
+}
+
+article > h4 {
+    color: #262626;
+    font-family: 'Press Start 2P', sans-serif;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    font-size: 120%;
+}
+
+
+article > header {
+    margin-top: 5vh;
+    margin-bottom: 3vh;
 }
 
 article > p, article li {
     color: #262626;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     margin-bottom: 2vh;
     line-height: 120%;
 }
 
-#para-llevar > nav {
-    display: flex;
-    height: initial;
-    margin-bottom: 5vh;
-    width: 80%;
-    margin-top: 5vh;
+section nav.small button {
+    font-size: 5vh;
+    background-color: #c6c6c6;
+    color: #262626;
 }
 
-#para-llevar > nav button {
-    padding-top: 3vh;
+section nav.small button:hover {
+    background-color: #878787;
+}
+
+#para-llevar > button {
+    height: 15%;
+    box-shadow: 0 0 20px #262626;
+    animation: from-left-animation .15s linear forwards;
+    opacity: 0;
+}
+
+section > section > a button.doable {
+    font-size: 7vh;
+    color: #FAFAFA;
+    box-shadow: 0 0 10px #262626;
+}
+
+section > section > article > button {
+    box-shadow: 0 0 10px #262626;
+    margin-top: 3vh;
+    font-size: 8vw;
+    height: 20%;
+}
+
+#order-review li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 5vh;
+}
+#order-review li > button {
+    border-radius: 4px;
+    height: 8vh;
+    width: 16vw;
+    font-size: 4vh;
+}
+
+#order-review a {
+    height: 20%;
+}
+
+#products > a {
+    height: 18vh;
+    box-shadow: 0 0 10px #262626;
+    animation: from-bottom-animation .15s linear forwards;
 }
 
 @media (min-width: 420px) and (orientation: landscape) {
@@ -218,7 +307,7 @@ article > p, article li {
 	height: 100%;
     }
 
-    nav > a.small {
+    nav > a.small, #para-llevar .small {
 	display: none;
     }
     nav> a.large {
@@ -249,23 +338,51 @@ article > p, article li {
     .fullscreen {
 	height: 100vh;
     }
-    #para-llevar > nav button {
-	font-size: 1.5vw;
+    #para-llevar nav button {
+	font-size: 1.75vw;
 	padding: 0 0;
-	margin-top: 3vh;
-	box-shadow: 0 2px 15px #262626;
     }
-    #para-llevar > nav {
-	width: 90%;
-	box-shadow: 0 0;
+    #para-llevar nav {
+	display: flex;
+	box-shadow: 0 0 20px #262626;
+	margin-bottom: 4vh;
     }
-
-
 }
 
-.centered {
-    width: 56%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+@keyframes from-bottom-animation {
+    from {
+        opacity: 0;
+        transform: translateY(+100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+
+
+@keyframes from-above-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+@keyframes from-left-animation {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
 }

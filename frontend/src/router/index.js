@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Logo from '@/components/Logo'
-import ParaLlevar from '@/components/ParaLlevar'
+import ParaLlevar from '@/components/ParaLlevar/ParaLlevar'
 import Catering from '@/components/Catering'
 import Mision from '@/components/Mision'
-import Productos from '@/components/Productos'
+import Products from '@/components/Products/Products'
+import ProductsList from '@/components/Products/List'
+import Product from '@/components/Products/Product'
 import Contacto from '@/components/Contacto'
 import Menu from '@/components/ui/CarritoMenu'
-import ParaLlevarDaysMenu from '@/components/ui/ParaLlevarDaysMenu'
-import ParaLlevarDayMenu from '@/components/ParaLlevarDayMenu'
+import ParaLlevarCalendar from '@/components/ParaLlevar/Calendar'
+import ParaLlevarDayMenu from '@/components/ParaLlevar/Menu'
+import OrderReview from '@/components/ui/OrderReview'
 
 Vue.use(Router)
 
@@ -22,7 +25,7 @@ const router = new Router({
     },
     {
       path: '/menu',
-      name: 'Menu',
+      name: 'Menú',
       component: Menu
     },
     {
@@ -31,9 +34,23 @@ const router = new Router({
       component: Contacto
     },
     {
-      path: '/productos',
-      name: 'Productos',
-      component: Productos
+      path: '/products',
+      name: 'Products',
+      component: Products,
+      children: [
+        {
+          path: 'list',
+          component: ProductsList
+        },
+        {
+          path: 'product/:name',
+          component: Product
+        },
+        {
+          path: 'order-review',
+          component: OrderReview
+        }
+      ]
     },
     {
       path: '/mision',
@@ -48,23 +65,21 @@ const router = new Router({
     {
       path: '/para-llevar',
       name: 'Para Llevar',
-      component: ParaLlevar
-    },
-    {
-      path: '/para-llevar/days/:day',
-      name: 'Para Llevar Day',
       component: ParaLlevar,
       children: [
         {
-          path: '',
+          path: 'menu/:day',
           component: ParaLlevarDayMenu
+        },
+        {
+          path: 'calendar',
+          component: ParaLlevarCalendar
+        },
+        {
+          path: 'order-review',
+          component: OrderReview
         }
       ]
-    },
-    {
-      path: '/para-llevar/days',
-      name: 'Para Llevar Days Menu',
-      component: ParaLlevarDaysMenu
     },
     {
       path: '*', redirect: '/'
