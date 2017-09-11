@@ -3,6 +3,7 @@
 		<article v-if="$route.path === '/products'">
 			<header>
 				<h2>Productos</h2>
+				<hr>
 			</header>
 			<p>¡Cociná como el Carrito!</p>
 			<p>De sazonar a platear, los productos culinarios del Carrito son partes esenciales de una cocina moderna y creativa.</p>

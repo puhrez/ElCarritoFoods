@@ -3,8 +3,10 @@
 		<article>
 			<header>
 				<h2>Misión</h2>
+				<hr>
 			</header>
-			<p>Cagar en paz</p>
+			<logo></logo>
+			<p>Nuestra misión es proveer un servicio alimentario que promueve el consumo consciente y la interpretación creativa del contexto gastronómico local sin exclusión económica.</p>
 		</article>
 	</section>
 
@@ -12,11 +14,13 @@
 
 <script>
 
+import Logo from './Logo'
+
 export default {
-  name: 'mision'
+  name: 'mision',
+  components: {
+    Logo
+  }
 }
 
-</script>
-
-<script>
 </script>
