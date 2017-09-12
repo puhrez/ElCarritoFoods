@@ -68,14 +68,17 @@ const router = new Router({
       component: ParaLlevar,
       children: [
         {
+          name: 'Menú del día',
           path: 'menu/:day',
           component: ParaLlevarDayMenu
         },
         {
+          name: 'Calendario',
           path: 'calendar',
           component: ParaLlevarCalendar
         },
         {
+          name: 'Pedido',
           path: 'order-review',
           component: OrderReview
         }
@@ -91,9 +94,8 @@ router.beforeEach((to, from, next) => {
   router.history.previous = from
   next()
 })
-router.afterEach((to, from, next) => {
+router.afterEach((to, from) => {
   window.scrollTo(0, 0)
-  next()
 })
 
 export default router

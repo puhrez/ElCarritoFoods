@@ -1,5 +1,5 @@
 <template>
-  <main id="app" :class="{fullscreen: this.$route.name !== 'Menu' && this.$route.name !== 'Logo'}">
+  <main id="app" :class="{fullscreen: this.$route.path !== '/menu' && this.$route.path !== '/'}">
     <router-view></router-view>
     <carrito-nav></carrito-nav>
   </main>

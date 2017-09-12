@@ -6,7 +6,7 @@
 			<router-link class="large" to="/para-llevar/menu/miercoles"><button>Miércoles</button></router-link>
 			<router-link class="large" to="/para-llevar/menu/jueves"><button>Jueves</button></router-link>
 			<router-link class="large" to="/para-llevar/menu/viernes"><button>Viernes</button></router-link>
-			<router-link v-if="!!Object.keys(items).length" class="large" to="/para-llevar/order-review"><button >Ordenar</button></router-link>
+			<router-link v-if="$store.getters.hasReservations()" class="large" to="/para-llevar/order-review"><button >Ordenar</button></router-link>
 		</nav>
 
 </template>
@@ -14,8 +14,7 @@
 <script>
 
 export default {
-  name: 'para-llevar-nav-isolated',
-  props: ['items']
+  name: 'para-llevar-nav-isolated'
 }
 
 </script>

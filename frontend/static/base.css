@@ -90,7 +90,7 @@ nav {
 }
 
 a {
-    overflow-wrap: break-word;
+
     text-decoration: none;
     width: 100%;
     height: 100%;
@@ -109,6 +109,7 @@ button {
     background-color: #262626;
     transition: background-color .15s;
 }
+
 
 button:hover, button:disabled {
     background-color: #878787;
@@ -151,7 +152,8 @@ section > section > a button.doable {
     box-shadow: 0 0 10px #262626;
 }
 
-section > section > article > button {
+.item-action-btn {
+    animation: appear-animation 100ms linear forwards;
     box-shadow: 0 0 10px #262626;
     margin-top: 3vh;
     font-size: 8vw;
@@ -159,7 +161,7 @@ section > section > article > button {
 }
 
 section section article {
-    animation: from-left-animation .15s linear forwards;
+    animation: from-left-animation 250ms linear forwards;
     height: 100%;
 }
 
@@ -168,20 +170,35 @@ article {
     text-align: left;
     width: 90%;
     height: 100%;
+    overflow: scroll;
+    padding-bottom: 15%;
 }
+
 article > button {
     border-radius: 5px;
     height: 16vh;
 }
 
+article > header {
+    margin-top: 3vh;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 article > header > h2 {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
-    margin-bottom: 2vh;
     font-size: 200%;
 }
 
+article > header > svg {
+    width: inherit;
+}
+article > header + hr {
+    margin-bottom: 3vh;
+}
 article > h4 {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
@@ -190,10 +207,9 @@ article > h4 {
     font-size: 120%;
 }
 
-
-article > header {
-    margin-top: 5vh;
-    margin-bottom: 3vh;
+article > section {
+    align-items: flex-start;
+    height: auto;
 }
 
 article > p, article li {
@@ -205,6 +221,7 @@ article > p, article li {
 
 div {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
@@ -219,7 +236,6 @@ div {
     margin-top: 10%;
 }
 .isolated-nav nav {
-    display: flex;
     flex-direction: column;
     animation: from-above-animation .15s linear forwards;
     height: auto;
@@ -239,7 +255,11 @@ div {
     background-color: #878787;
 }
 
+.quantity > div {
+    margin-top: 2vh;
+    flex-direction: row;
 
+}
 #para-llevar > button {
     height: 15%;
     box-shadow: 0 0 20px #262626;
@@ -247,12 +267,14 @@ div {
     opacity: 0;
 }
 
-
+#order-review ul {
+    width: 100%;
+}
 #order-review li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 5vh;
+    font-size: 3vh;
 }
 #order-review li > button {
     border-radius: 4px;
@@ -261,6 +283,10 @@ div {
     font-size: 4vh;
 }
 
+#order-review h4 {
+    font-size: 3.5vh;
+    margin-bottom: 4vh;
+}
 #order-review a {
     height: 20%;
 }
@@ -271,12 +297,24 @@ div {
     animation: from-bottom-animation .15s linear forwards;
 }
 
+#product > article > .product-description {
+    min-height: 35%;
+    justify-content: flex-start;
+}
+
+#shopping-cart-icon > svg {
+    width: 50%;
+}
+.hidden {
+    display: none;
+}
+
 #mision #logo {
     height: 50%;
 }
 
 #contact a {
-
+    overflow-wrap: break-word;
     text-decoration: underline;
 }
 @media (min-width: 420px) and (orientation: landscape) {
@@ -405,4 +443,24 @@ div {
         opacity: 1;
         transform : translateY(0);
     }
+}
+
+@keyframes appear-animation {
+    from {
+        opacity: 0;
+        transform: scale(.5, .5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+
+@keyframes vibrate {
+    0% {margin-left: 0px;}
+    25% {margin-right: 5px;}
+    50% {margin-right: 0px;}
+    75% {margin-left: 5px;}
+    100% {margin-left: 0px;}
 }

@@ -1,6 +1,6 @@
 <template>
 	<section id="para-llevar">
-		<para-llevar-nav :items="daysReserved" class="large"></para-llevar-nav>
+		<para-llevar-nav class="large"></para-llevar-nav>
 		<article v-if="$route.path === '/para-llevar'">
 			<header>
 				<h2>Para Llevar</h2>
@@ -14,8 +14,8 @@
 			<br>
 			<p>¡Buen provecho!</p>
 		</article>
-		<router-view :class="{ 'spaced-between': !!Object.keys(daysReserved).length }" :items="daysReserved" @reserve="addToCart" @unreserve="removeFromCart" v-else></router-view>
-		<para-llevar-nav :items="daysReserved" v-if="$route.path !== '/para-llevar/calendar' && $route.path !== '/para-llevar/order-review'" class="small"></para-llevar-nav>
+		<router-view :class="{ 'spaced-between': $store.getters.hasReservations() }"v-else></router-view>
+		<para-llevar-nav v-if="$route.path !== '/para-llevar/calendar' && $route.path !== '/para-llevar/order-review'" class="small"></para-llevar-nav>
 	</section>
 
 </template>
@@ -27,20 +27,6 @@ export default {
   name: 'para-llevar',
   components: {
     ParaLlevarNav
-  },
-  data () {
-    return {
-      daysReserved: {}
-    }
-  },
-  methods: {
-    addToCart (day, quantity) {
-      this.daysReserved[day] = quantity || 1
-    },
-    removeFromCart (day) {
-      delete this.daysReserved[day]
-      if (!Object.keys(this.daysReserved).length && !this.$route.path.includes('menu')) { this.$router.push('/para-llevar') }
-    }
   }
 }
 

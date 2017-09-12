@@ -1,28 +1,36 @@
 <template>
-		<section id="productos-products">
+		<section id="product">
 		<article>
 			<header>
-				<h2>{{ $route.params.name }}</h2>
-				<hr>
+			  <h2>{{ $route.params.name }}</h2>
+                          <shopping-cart-icon v-show="!$store.getters.isEmpty()"></shopping-cart-icon>
 			</header>
-			<p>{{ description }}</p>
+                        <hr>
+                        <section class="product-description">
+			  <p>{{ description }}</p>
+                        </section>
 			<br>
-			<div class="quantity">
+ 			<div class="quantity">
 				<h4>Cantidad: {{ quantity }}</h4>
-				<div><button :disabled="quantity === 0"@click="less">-</button><button @click="more">+</button></div>
+				<div><button :disabled="quantity === 0" @click="less">-</button><button @click="more">+</button></div>
 			</div>
-			<button :class="{doable: !reserved, undoable: reserved }" @click="reserve">{{ reserved ? 'Reservado' : 'Reservar' }}</button>
+			<button v-show="quantity > 0" class="item-action-btn" :disabled="reserved" :class="{doable: !reserved}" @click="reserve">{{ reserved ? 'Reservado' : 'Reservar' }}</button>
 		</article>
 	</section>
 
 </template>
 
 <script>
+
+import ShoppingCartIcon from '@/components/ui/ShoppingCartIcon'
+
 export default {
   name: 'productos-product',
-  props: ['items'],
+  components: {
+    ShoppingCartIcon
+  },
   data () {
-    let reserved = this.$props.items[this.$route.params.name]
+    let reserved = this.$store.getters.getProduct(this.$route.params.name)
     return {
       reserved: !!reserved,
       quantity: reserved || 0
@@ -33,31 +41,34 @@ export default {
       return 'Sabe a pelo de gato.'
     }
   },
+  watch: {
+    'reserved' (to, from) {
+      if (to) {
+        this.$store.commit('ADD_TO_CART', {
+          product: this.$route.params.name,
+          quantity: this.quantity})
+      } else {
+        this.$store.commit('REMOVE_FROM_CART',
+                           this.$route.params.product)
+      }
+    }
+  },
   methods: {
     reserve () {
       if (this.reserved) {
         this.reserved = false
         this.quantity = 0
-        this.$emit('unreserve', this.$route.params.name)
       } else {
         this.reserved = true
-        this.quantity = 1
-        this.$emit('reserve', this.$route.params.name)
       }
     },
     less () {
       this.quantity -= 1
-      if (this.quantity > 0) {
-        this.$emit('reserve', this.$route.params.name, this.quantity)
-      } else {
-        this.reserved = false
-        this.$emit('unreserve', this.$route.params.name)
-      }
+      this.reserved = false
     },
     more () {
       this.quantity += 1
-      this.reserved = true
-      this.$emit('reserve', this.$route.params.name, this.quantity)
+      this.reserved = false
     }
   }
 }
