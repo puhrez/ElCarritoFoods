@@ -1,3 +1,4 @@
+
 <template>
   <section id="order-review">
     <article>
@@ -5,40 +6,49 @@
 	<h2>Tu pedido</h2>
       </header>
       <hr>
-      <section v-show="$store.getters.hasReservations()" id="reservations-review">
+      <section v-if="hasReservations" id="reservations-review">
         <h4>Reservaciones</h4>
 	<ul>
-	  <li class="ordered" v-for="itemQuantity in Object.entries($store.state.reservations)">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeReservation" class="undoable">X</button></li>
+	  <li class="ordered" v-for="itemQuantity in reservations">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeReservation" class="undoable">X</button></li>
 	</ul>
       </section>
       <br>
-      <section v-show="$store.getters.hasProducts()" id="products-review">
+      <section v-if="hasProducts" id="products-review">
         <h4>Productos</h4>
         <ul>
-	  <li class="ordered" v-for="itemQuantity in Object.entries($store.state.cart)">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeProduct" class="undoable">X</button></li>
+	  <li class="ordered" v-for="itemQuantity in products">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeProduct" class="undoable">X</button></li>
 	</ul>
       </section>
-      <p v-show="$store.getters.isEmpty()">¡Todavía no aceptamos donaciones so pedí algo!</p>
+      <p v-if="isEmpty()">¡Todavía no aceptamos donaciones so pedí algo!</p>
     </article>
-    <a><button class="doable" v-if="!$store.getters.isEmpty()">Pagar</button></a>
+    <a><button class="doable" v-if="!isEmpty()">Pagar</button></a>
   </section>
 </template>
 
 <script>
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'order-review',
+  computed: {
+    ...mapGetters([
+      'products',
+      'reservations',
+      'isEmpty',
+      'hasReservations',
+      'hasProducts'])
+  },
   methods: {
     removeProduct (e) {
-      this.$store.commit('REMOVE_FROM_CART', this.removeAndGetKey(e))
+      this.$store.commit('REMOVE_FROM_CART', this.getKey(e))
       this.leaveIfEmpty()
     },
     removeReservation (e) {
-      this.$store.commit('UNRESERVE', this.removeAndGetKey(e))
+      this.$store.commit('UNRESERVE', this.getKey(e))
       this.leaveIfEmpty()
     },
-    removeAndGetKey (e) {
-      e.target.parentNode.remove()
+    getKey (e) {
       return e.target.parentNode.firstChild.data.split(' ')[0]
     },
     leaveIfEmpty () {

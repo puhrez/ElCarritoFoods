@@ -4,7 +4,7 @@
     <article v-if="$route.path === '/para-llevar'">
       <header>
         <h2>Para Llevar</h2>
-        <shopping-cart v-show="!$store.getters.isEmpty()"></shopping-cart>
+        <shopping-cart v-show="!isEmpty()"></shopping-cart>
       </header>
       <hr>
       <p>¡Desenchufá el microhonda y dejáte llevar por las ricas comidas del Carrito Foods!</p>
@@ -15,7 +15,7 @@
       <br>
       <p>¡Buen provecho!</p>
     </article>
-    <router-view :key="$route.path" :class="{ 'spaced-between': $store.getters.hasReservations() }"v-else></router-view>
+    <router-view :key="$route.path" :class="{ 'spaced-between': hasReservations }"v-else></router-view>
     <para-llevar-nav v-show="$route.path !== '/para-llevar/calendar'" class="small"></para-llevar-nav>
   </section>
 
@@ -23,9 +23,16 @@
 
 <script>
 import ParaLlevarNav from './Nav'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'para-llevar',
+  computed: {
+    ...mapGetters([
+      'hasReservations',
+      'isEmpty'
+    ])
+  },
   components: {
     ParaLlevarNav
   }

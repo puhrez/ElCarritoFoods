@@ -271,7 +271,7 @@ div {
     flex-direction: row;
 }
 
-.bounces {
+.bounces svg {
     animation: .2s linear 0s 3 bounce;
 }
 

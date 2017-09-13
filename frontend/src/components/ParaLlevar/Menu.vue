@@ -3,7 +3,7 @@
     <article>
       <header>
 	<h2>{{ $route.params.day }}</h2>
-        <shopping-cart v-show="!$store.getters.isEmpty()"></shopping-cart>
+        <shopping-cart v-show="!isEmpty()"></shopping-cart>
       </header>
       <hr>
       <ol>
@@ -19,6 +19,7 @@
 <script>
 
 import Quantity from '@/components/ui/Quantity'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'para-llevar-day-menu',
@@ -35,7 +36,10 @@ export default {
   computed: {
     menuItems () {
       return ['concha en salsa verde', 'penne pasta', 'pene de búfalo', 'flan']
-    }
+    },
+    ...mapGetters([
+      'isEmpty'
+    ])
   },
   watch: {
     'quantity' (to, from) {

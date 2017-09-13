@@ -6,15 +6,22 @@
 			<router-link class="large" to="/para-llevar/menu/miercoles"><button>Miércoles</button></router-link>
 			<router-link class="large" to="/para-llevar/menu/jueves"><button>Jueves</button></router-link>
 			<router-link class="large" to="/para-llevar/menu/viernes"><button>Viernes</button></router-link>
-			<router-link v-if="$store.getters.hasReservations()" class="small" to="/order-review"><button >Ordenar</button></router-link>
+			<router-link v-if="hasReservations" class="large" to="/order-review"><button >Ordenar</button></router-link>
 		</nav>
 
 </template>
 
 <script>
 
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'para-llevar-nav-isolated'
+  name: 'para-llevar-nav-isolated',
+  computed: {
+    ...mapGetters([
+      'hasReservations'
+    ])
+  }
 }
 
 </script>

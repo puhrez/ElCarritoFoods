@@ -10,17 +10,17 @@ export default new Vuex.Store({
     cart: {}
   },
   getters: {
-    hasReservations: (state, getters) => () => {
-      return !!getters.reservedDaysCount()
+    hasReservations: state => {
+      return !!Object.values(state.reservations).length
     },
-    hasProducts: (state, getters) => () => {
-      return !!getters.cartItemsCount()
+    reservations: state => {
+      return Object.entries(state.reservations)
     },
-    cartItemsCount: (state, getters) => () => {
-      return Object.values(state.cart).length
+    products: state => {
+      return Object.entries(state.cart)
     },
-    reservedDaysCount: (state, getters) => () => {
-      return Object.values(state.reservations).length
+    hasProducts: state => {
+      return !!Object.values(state.cart).length
     },
     getReservation: (state, getters) => (day) => {
       return state.reservations[day]
@@ -29,24 +29,24 @@ export default new Vuex.Store({
       return state.cart[product]
     },
     isEmpty: (state, getters) => () => {
-      return !(getters.hasReservations() || getters.hasProducts())
+      return !(getters.hasReservations || getters.hasProducts)
     },
-    orderItemCount (state) {
+    orderItemCount: state => {
       return Object.values(state.cart).length + Object.values(state.reservations).length
     }
   },
   mutations: {
     RESERVE (state, payload) {
-      state.reservations[payload.day] = payload.quantity
+      Vue.set(state.reservations, payload.day, payload.quantity)
     },
     UNRESERVE (state, day) {
-      delete state.reservations[day]
+      Vue.delete(state.reservations, day)
     },
     ADD_TO_CART (state, payload) {
-      state.cart[payload.product] = payload.quantity
+      Vue.set(state.cart, payload.product, payload.quantity)
     },
     REMOVE_FROM_CART (state, product) {
-      delete state.cart[product]
+      Vue.delete(state.cart, product)
     }
   }
 })
