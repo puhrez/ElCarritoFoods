@@ -52,7 +52,7 @@ button {
 }
 
 main {
-    transition: height .15s;
+    transition: height 300ms;
     display: flex;
     flex-direction: column;
     font-family: 'Press Start 2P', sans-serif;
@@ -70,9 +70,10 @@ section {
 
 section section {
     width: 100%;
+}
+section section.spaced-between {
     height: 100%;
 }
-
 
 svg {
     height: 100%;
@@ -117,12 +118,14 @@ button:hover, button:disabled {
 
 
 section button.doable {
+    color: #FAFAFA;
     background-color: #549c57;
 }
 
 section button.doable:hover {
     background-color: #48b54c;
 }
+
 
 section button.undoable {
     background-color: #E53935;
@@ -134,7 +137,11 @@ section button.undoable:hover {
 
 
 section.isolated-nav {
-    height: 100%;
+
+}
+
+section nav.small {
+    animation: from-bottom-animation .15s linear forwards;
 }
 section nav.small button {
     font-size: 5vh;
@@ -147,6 +154,7 @@ section nav.small button:hover {
 }
 
 section > section > a button.doable {
+    animation: from-bottom-animation .15s linear forwards;
     font-size: 7vh;
     color: #FAFAFA;
     box-shadow: 0 0 10px #262626;
@@ -161,7 +169,7 @@ section > section > a button.doable {
 }
 
 section section article {
-    animation: from-left-animation 250ms linear forwards;
+    animation: from-bottom-animation .15s linear forwards;
     height: 100%;
 }
 
@@ -171,6 +179,7 @@ article {
     width: 90%;
     height: 100%;
     overflow: scroll;
+    overflow-wrap: break-word;
     padding-bottom: 15%;
 }
 
@@ -190,7 +199,7 @@ article > header {
 article > header > h2 {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
-    font-size: 200%;
+    font-size: 150%;
 }
 
 article > header > svg {
@@ -235,6 +244,7 @@ div {
 .spaced-between nav {
     margin-top: 10%;
 }
+
 .isolated-nav nav {
     flex-direction: column;
     animation: from-above-animation .15s linear forwards;
@@ -257,9 +267,14 @@ div {
 
 .quantity > div {
     margin-top: 2vh;
+    width: 60%;
     flex-direction: row;
-
 }
+
+.bounces {
+    animation: .2s linear 0s 3 bounce;
+}
+
 #para-llevar > button {
     height: 15%;
     box-shadow: 0 0 20px #262626;
@@ -289,6 +304,7 @@ div {
 }
 #order-review a {
     height: 20%;
+    animation: from-bottom-animation .15s linear forwards;
 }
 
 #products > a {
@@ -302,9 +318,15 @@ div {
     justify-content: flex-start;
 }
 
-#shopping-cart-icon > svg {
-    width: 50%;
+#shopping-cart-icon {
+    animation: appear-animation 100ms linear forwards;
+    width: inherit;
 }
+#shopping-cart-icon > svg {
+    position: relative;
+    width: inherit;
+}
+
 .hidden {
     display: none;
 }
@@ -314,9 +336,9 @@ div {
 }
 
 #contact a {
-    overflow-wrap: break-word;
     text-decoration: underline;
 }
+
 @media (min-width: 420px) and (orientation: landscape) {
     nav button  {
 	font-size: 13vw;
@@ -364,11 +386,10 @@ div {
 	width: 75%;
 	height: 100%;
     }
-
-    nav > a.small, #para-llevar .small {
+    a.small, #para-llevar .small, nav.small {
 	display: none;
     }
-    nav> a.large {
+    nav> a.large, .large {
 	display: inherit;
     }
     nav.primary {
@@ -379,6 +400,11 @@ div {
 	border-radius: 5px;
 
     }
+    hr {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     nav.primary > button {
 	width: 100%;
 	border-radius: 5px;
@@ -390,8 +416,8 @@ div {
     .isolated-nav {
 	width: 100%;
     }
-    article {
-	width: 90%;
+    .isolated-nav nav {
+        align-self: center;
     }
     .fullscreen {
 	height: 100vh;
@@ -405,6 +431,42 @@ div {
 	box-shadow: 0 0 20px #262626;
 	margin-bottom: 4vh;
     }
+    .quantity > div {
+        width: 40%;
+    }
+    article {
+        display: flex;
+        flex-direction: column;
+    }
+    article button {
+        font-size: 3vh;
+    }
+    .item-action-btn {
+        font-size: 3vh;
+        align-self: center;
+        width: 50%;
+    }
+    section button.doable {
+        font-size: 5vh;
+    }
+
+    #products .isolated-nav {
+        margin-top: 5vh;
+        display: flex;
+    }
+    #products .isolated-nav nav {
+        width: auto;
+    }
+    .isolated-nav > a {
+        width: 50%;
+        align-self: center;
+    }
+
+    #products .isolated-nav button {
+        padding: 0 2vw;
+        font-size: 5vh;
+    }
+
 }
 
 @keyframes from-bottom-animation {
@@ -457,10 +519,10 @@ div {
     }
 }
 
-@keyframes vibrate {
-    0% {margin-left: 0px;}
-    25% {margin-right: 5px;}
-    50% {margin-right: 0px;}
-    75% {margin-left: 5px;}
-    100% {margin-left: 0px;}
+@keyframes bounce {
+    0% {bottom: 0;}
+    10% {bottom: -0.2vh;}
+    50% {bottom: 1vh;}
+    90% {bottom: -0.2vh;}
+    100% {bottom: 0;}
 }

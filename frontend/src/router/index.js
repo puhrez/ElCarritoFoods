@@ -45,10 +45,6 @@ const router = new Router({
         {
           path: 'product/:name',
           component: Product
-        },
-        {
-          path: 'order-review',
-          component: OrderReview
         }
       ]
     },
@@ -61,6 +57,11 @@ const router = new Router({
       path: '/catering',
       name: 'Catering',
       component: Catering
+    },
+    {
+      name: 'Pedido',
+      path: '/order-review',
+      component: OrderReview
     },
     {
       path: '/para-llevar',
@@ -76,11 +77,6 @@ const router = new Router({
           name: 'Calendario',
           path: 'calendar',
           component: ParaLlevarCalendar
-        },
-        {
-          name: 'Pedido',
-          path: 'order-review',
-          component: OrderReview
         }
       ]
     },

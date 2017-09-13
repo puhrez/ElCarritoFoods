@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import ShoppingCartIcon from '@/components/ui/ShoppingCartIcon'
 
+Vue.component('shopping-cart', ShoppingCartIcon)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

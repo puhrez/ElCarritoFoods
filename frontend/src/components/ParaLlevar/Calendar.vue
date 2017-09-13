@@ -7,7 +7,7 @@
 			<router-link to="/para-llevar/menu/jueves"><button>Jueves</button></router-link>
 			<router-link to="/para-llevar/menu/viernes"><button>Viernes</button></router-link>
 		</nav>
-		<router-link class="small" v-if="$store.getters.hasReservations()" to="/para-llevar/order-review"><button class="doable">Ordenar</button></router-link>
+		<router-link class="small" v-if="$store.getters.hasReservations()" to="/order-review"><button class="doable">Ordenar</button></router-link>
 	</section>
 </template>
 

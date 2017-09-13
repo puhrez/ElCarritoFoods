@@ -11,10 +11,16 @@ export default new Vuex.Store({
   },
   getters: {
     hasReservations: (state, getters) => () => {
-      return !!Object.keys(state.reservations).length
+      return !!getters.reservedDaysCount()
     },
     hasProducts: (state, getters) => () => {
-      return !!Object.keys(state.cart).length
+      return !!getters.cartItemsCount()
+    },
+    cartItemsCount: (state, getters) => () => {
+      return Object.values(state.cart).length
+    },
+    reservedDaysCount: (state, getters) => () => {
+      return Object.values(state.reservations).length
     },
     getReservation: (state, getters) => (day) => {
       return state.reservations[day]
@@ -24,6 +30,9 @@ export default new Vuex.Store({
     },
     isEmpty: (state, getters) => () => {
       return !(getters.hasReservations() || getters.hasProducts())
+    },
+    orderItemCount (state) {
+      return Object.values(state.cart).length + Object.values(state.reservations).length
     }
   },
   mutations: {
