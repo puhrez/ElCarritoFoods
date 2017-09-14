@@ -293,14 +293,15 @@ div {
     height: 13vh;
 }
 
-#shopping-cart-icon span.blinking {
-    animation: .4s blinking infinite ;
+#shopping-cart-icon span.blinks {
+    animation: infinite blinking 750ms steps(2, start);
 }
-#shopping-cart-icon.bouncesUp {
-    animation: 2s bounceUp linear 0s 3 ;
+
+#shopping-cart-icon h2.bouncesUp {
+    animation: 2 bounceUp 150ms ;
 }
-#shopping-cart-icon.bouncesDown {
-    animation: bounceDown 2s linear;
+#shopping-cart-icon h2.bouncesDown {
+    animation: 2 bounceDown 150ms;
 }
 nav.primary a.small button {
     font-size: 8.5vh;
@@ -560,22 +561,27 @@ nav.primary a.small button {
 
 @keyframes bounceUp {
     0% {bottom: 0;}
-    10% {bottom: -0.2vh;}
-    50% {bottom: 1vh;}
-    90% {bottom: -0.2vh;}
+    10% {bottom: -0.1vh;}
+    50% {bottom: .25vh;}
+    90% {bottom: -0.1vh;}
     100% {bottom: 0;}
 }
 
 @keyframes bounceDown {
     0% {bottom: 0;}
-    10% {bottom: 0.2vh;}
-    50% {bottom: -1vh;}
-    90% {bottom: 0.2vh;}
+    10% {bottom: 0.1vh;}
+    50% {bottom: -.25vh;}
+    90% {bottom: 0.1vh;}
     100% {bottom: 0;}
 }
 
 @keyframes blinking {
-    0% {visibility: hidden;}
-    90% {visibility: visible;}
-    100% {visibility: hidden;}
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blinking {
+  to {
+    visibility: hidden;
+  }
 }

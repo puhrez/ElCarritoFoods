@@ -1,6 +1,6 @@
 <template>
-  <router-link id="shopping-cart-icon" :class="{'bouncesUp': bounceUp, 'bouncesDown': bounceDown }" to="/order-review">
-    <h2>$<span :class="{ 'blinking': true }">{{ totalPrice || '_' }}</span></h2>
+  <router-link id="shopping-cart-icon"  to="/order-review">
+    <h2 :class="{'bouncesUp': bounceUp, 'bouncesDown': bounceDown }">$<span :class="{ 'blinks': !totalPrice }">{{ totalPrice || '_' }}</span></h2>
   </router-link>
 </template>
 
@@ -25,8 +25,10 @@ export default {
     'totalPrice' (to, from) {
       if (to > from) {
         this.bounceUp = true
+        setTimeout(() => { this.bounceUp = false }, 1000)
       } else if (to < from) {
         this.bounceDown = true
+        setTimeout(() => { this.bounceDown = false }, 1000)
       }
     }
   }
