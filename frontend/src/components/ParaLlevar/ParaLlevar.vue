@@ -4,7 +4,7 @@
     <article v-if="$route.path === '/para-llevar'">
       <header>
         <h2>Para Llevar</h2>
-        <shopping-cart v-show="!isEmpty()"></shopping-cart>
+        <shopping-cart></shopping-cart>
       </header>
       <hr>
       <p>¡Desenchufá el microhonda y dejáte llevar por las ricas comidas del Carrito Foods!</p>

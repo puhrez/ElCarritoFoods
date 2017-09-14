@@ -17,19 +17,20 @@ const menuRoute = {path: '/menu', name: 'Menú'}
 export default {
   name: 'carrito-nav',
   data () {
-    let rootRoutePath = this.$route.matched[0]
+    let rootRoutePath = this.$route.matched[0].path
+    console.log('root', rootRoutePath.path)
     return {
-      appropriateRoute: this.$route.path.split('/').length > 2 ? {path: rootRoutePath, name: 'Volver'} : menuRoute
+      appropriateRoute: this.$route.path.split('/').length > 2
+        ? {path: rootRoutePath, name: 'Volver'} : menuRoute
     }
   },
   watch: {
     '$route' (to, from) {
       let toDepth = to.path.split('/').length
-      if (toDepth === 3) {
-        this.appropriateRoute = {path: from.path, name: 'Volver'}
-      }
       if (to.path === '/menu' || toDepth === 2) {
         this.appropriateRoute = menuRoute
+      } else if (toDepth > 2) {
+        this.appropriateRoute = {path: this.$route.matched[0].path, name: 'Volver'}
       }
     }
   }

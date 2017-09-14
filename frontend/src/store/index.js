@@ -20,6 +20,7 @@ function load (obj) {
   }
   return {}
 }
+
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
@@ -69,7 +70,7 @@ export default new Vuex.Store({
     },
     UNRESERVE (state, day) {
       Vue.delete(state.reservations, day)
-      localStorage.set('reservations', Object.keys(state.reservations).join(','))
+      localStorage.setItem('reservations', Object.keys(state.reservations).join(','))
       localStorage.removeItem(day)
     },
     ADD_TO_CART (state, product) {

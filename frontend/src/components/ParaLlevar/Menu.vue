@@ -25,7 +25,6 @@ export default {
   name: 'para-llevar-day-menu',
   data () {
     let reserved = this.$store.getters.getReservation(this.$route.params.day)
-    console.log('reserved', reserved)
     return {
       reserved: !!reserved,
       quantity: reserved ? reserved.quantity : 0
