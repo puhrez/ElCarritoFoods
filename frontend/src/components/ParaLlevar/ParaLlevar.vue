@@ -15,7 +15,7 @@
       <br>
       <p>¡Buen provecho!</p>
     </article>
-    <router-view :key="$route.path" :class="{ 'spaced-between': hasReservations }"v-else></router-view>
+    <router-view :key="$route.path" v-else></router-view>
     <para-llevar-nav v-show="$route.path !== '/para-llevar/calendar'" class="small"></para-llevar-nav>
   </section>
 

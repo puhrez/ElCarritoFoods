@@ -12,7 +12,7 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
+icle, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
@@ -178,7 +178,8 @@ article {
     text-align: left;
     width: 90%;
     height: 100%;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
     overflow-wrap: break-word;
     padding-bottom: 15%;
 }
@@ -196,7 +197,7 @@ article > header {
     justify-content: space-between;
 }
 
-article > header > h2 {
+article > header h2 {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
     font-size: 150%;
@@ -221,6 +222,10 @@ article > section {
     height: auto;
 }
 
+article > section + section {
+    margin-top: 5vh;
+}
+
 article > p, article li {
     color: #262626;
     font-family: 'Press Start 2P', sans-serif;
@@ -238,6 +243,14 @@ div {
     height: 121.5vh;
 }
 
+.price {
+    align-items: flex-end;
+    margin-top: 4vh;
+}
+#order-review .price h4 {
+    margin-right: 3vw;
+    font-style: initial;
+}
 .spaced-between {
     justify-content: space-between;
 }
@@ -265,16 +278,33 @@ div {
     background-color: #878787;
 }
 
+.isolated-nav .reserved {
+    background-color: #a1a1a1
+}
 .quantity > div {
     margin-top: 2vh;
-    width: 60%;
     flex-direction: row;
 }
 
-.bounces svg {
-    animation: .2s linear 0s 3 bounce;
+.quantity button {
+    font-size: 14vw;
+    padding: 0;
+    width: 25vw;
+    height: 13vh;
 }
 
+#shopping-cart-icon span.blinking {
+    animation: .4s blinking infinite ;
+}
+#shopping-cart-icon.bouncesUp {
+    animation: 2s bounceUp linear 0s 3 ;
+}
+#shopping-cart-icon.bouncesDown {
+    animation: bounceDown 2s linear;
+}
+nav.primary a.small button {
+    font-size: 8.5vh;
+}
 #para-llevar > button {
     height: 15%;
     box-shadow: 0 0 20px #262626;
@@ -282,6 +312,9 @@ div {
     opacity: 0;
 }
 
+#para-llevar-menu ol {
+    min-height: 30%;
+}
 #order-review ul {
     width: 100%;
 }
@@ -301,6 +334,7 @@ div {
 #order-review h4 {
     font-size: 3.5vh;
     margin-bottom: 4vh;
+    font-style: italic;
 }
 #order-review a {
     height: 20%;
@@ -314,19 +348,24 @@ div {
 }
 
 #product > article > .product-description {
-    min-height: 35%;
+    min-height: 30%;
     justify-content: flex-start;
+}
+#product > article > .product-description p + p {
+    margin-top: 5vh;
 }
 
 #shopping-cart-icon {
+    display: flex;
+    align-items: center;
     animation: appear-animation 100ms linear forwards;
     width: inherit;
-}
-#shopping-cart-icon > svg {
-    position: relative;
-    width: inherit;
-}
+    height: inherit;
 
+}
+#shopping-cart-icon h2 {
+    position: relative;
+}
 .hidden {
     display: none;
 }
@@ -519,10 +558,24 @@ div {
     }
 }
 
-@keyframes bounce {
+@keyframes bounceUp {
     0% {bottom: 0;}
     10% {bottom: -0.2vh;}
     50% {bottom: 1vh;}
     90% {bottom: -0.2vh;}
     100% {bottom: 0;}
+}
+
+@keyframes bounceDown {
+    0% {bottom: 0;}
+    10% {bottom: 0.2vh;}
+    50% {bottom: -1vh;}
+    90% {bottom: 0.2vh;}
+    100% {bottom: 0;}
+}
+
+@keyframes blinking {
+    0% {visibility: hidden;}
+    90% {visibility: visible;}
+    100% {visibility: hidden;}
 }

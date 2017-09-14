@@ -1,15 +1,15 @@
 <template>
-  <section id="para-llevar-day">
+  <section id="para-llevar-menu">
     <article>
       <header>
 	<h2>{{ $route.params.day }}</h2>
-        <shopping-cart v-show="!isEmpty()"></shopping-cart>
+        <shopping-cart></shopping-cart>
       </header>
       <hr>
       <ol>
-	<li v-for="item in menuItems">{{ item }}</li>
+	<li v-for="item in menu.items">{{ item }}</li>
       </ol>
-      <br>
+      <p>${{ quantity ? menu.price * quantity : menu.price }}</p>
       <quantity label="Ordenes" :quantity="quantity" @change="quantityChange"></quantity>
       <button v-show="quantity > 0" class="item-action-btn" :disabled="reserved" :class="{doable: !reserved}" @click="reserve">{{ reserved ? 'Reservado' : 'Reservar' }}</button>
     </article>
@@ -25,17 +25,21 @@ export default {
   name: 'para-llevar-day-menu',
   data () {
     let reserved = this.$store.getters.getReservation(this.$route.params.day)
+    console.log('reserved', reserved)
     return {
       reserved: !!reserved,
-      quantity: reserved || 0
+      quantity: reserved ? reserved.quantity : 0
     }
   },
   components: {
     Quantity
   },
   computed: {
-    menuItems () {
-      return ['concha en salsa verde', 'penne pasta', 'pene de búfalo', 'flan']
+    menu () {
+      return {
+        items: ['concha en salsa verde', 'penne pasta', 'pene de búfalo', 'flan'],
+        price: 5
+      }
     },
     ...mapGetters([
       'isEmpty'
@@ -43,8 +47,8 @@ export default {
   },
   watch: {
     'quantity' (to, from) {
-      if (this.reserved) {
-        this.reserved = false
+      this.reserved = false
+      if (to === 0) {
         this.$store.commit('UNRESERVE',
                            this.$route.params.day)
       }
@@ -55,7 +59,9 @@ export default {
       this.reserved = true
       this.$store.commit('RESERVE', {
         day: this.$route.params.day,
-        quantity: this.quantity})
+        quantity: this.quantity,
+        price: this.menu.price
+      })
     },
     quantityChange (newQuantity) {
       this.quantity = newQuantity

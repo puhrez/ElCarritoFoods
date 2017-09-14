@@ -9,16 +9,20 @@
       <section v-if="hasReservations" id="reservations-review">
         <h4>Reservaciones</h4>
 	<ul>
-	  <li class="ordered" v-for="itemQuantity in reservations">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeReservation" class="undoable">X</button></li>
+	  <li class="ordered" v-for="r in reservations">{{ r.day }} ${{ r.price }} x{{ r.quantity }}<button @click="removeReservation" class="undoable">X</button></li>
 	</ul>
       </section>
       <br>
       <section v-if="hasProducts" id="products-review">
         <h4>Productos</h4>
         <ul>
-	  <li class="ordered" v-for="itemQuantity in products">{{ itemQuantity[0] }} x{{ itemQuantity[1] }}<button @click="removeProduct" class="undoable">X</button></li>
+	  <li class="ordered" v-for="p in products">{{ p.name }} x{{ p.quantity }} ${{ p.quantity * p.price }}<button @click="removeProduct" class="undoable">X</button></li>
 	</ul>
       </section>
+      <hr v-if="totalPrice">
+      <section class="price" v-if="totalPrice">
+        <h4>${{ totalPrice || 0 }}</h4>
+        </section>
       <p v-if="isEmpty()">¡Todavía no aceptamos donaciones so pedí algo!</p>
     </article>
     <a><button class="doable" v-if="!isEmpty()">Pagar</button></a>
@@ -37,6 +41,7 @@ export default {
       'reservations',
       'isEmpty',
       'hasReservations',
+      'totalPrice',
       'hasProducts'])
   },
   methods: {

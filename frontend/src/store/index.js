@@ -13,11 +13,12 @@ export default new Vuex.Store({
     hasReservations: state => {
       return !!Object.values(state.reservations).length
     },
+
     reservations: state => {
-      return Object.entries(state.reservations)
+      return Object.values(state.reservations)
     },
     products: state => {
-      return Object.entries(state.cart)
+      return Object.values(state.cart)
     },
     hasProducts: state => {
       return !!Object.values(state.cart).length
@@ -31,19 +32,27 @@ export default new Vuex.Store({
     isEmpty: (state, getters) => () => {
       return !(getters.hasReservations || getters.hasProducts)
     },
-    orderItemCount: state => {
-      return Object.values(state.cart).length + Object.values(state.reservations).length
+    cartItems: state => {
+      return Object.values(state.cart)
+        .concat(Object.values(state.reservations))
+    },
+    totalPrice: (state, getters) => {
+      return getters.cartItems
+        .map((a) => {
+          return a.price * a.quantity
+        })
+        .reduce((a, b) => a + b, 0)
     }
   },
   mutations: {
-    RESERVE (state, payload) {
-      Vue.set(state.reservations, payload.day, payload.quantity)
+    RESERVE (state, reservations) {
+      Vue.set(state.reservations, reservations.day, reservations)
     },
     UNRESERVE (state, day) {
       Vue.delete(state.reservations, day)
     },
-    ADD_TO_CART (state, payload) {
-      Vue.set(state.cart, payload.product, payload.quantity)
+    ADD_TO_CART (state, product) {
+      Vue.set(state.cart, product.name, product)
     },
     REMOVE_FROM_CART (state, product) {
       Vue.delete(state.cart, product)
