@@ -25,9 +25,9 @@ export default {
     }
   },
   watch: {
-    '$route' (to, from) {
-      let toDepth = to.path.split('/').length
-      if (to.path === '/menu' || toDepth === 2) {
+    '$route.path' (to, from) {
+      let toDepth = to.split('/').length
+      if (to === '/menu' || toDepth === 2) {
         this.appropriateRoute = menuRoute
       } else if (toDepth > 2) {
         this.appropriateRoute = {path: this.$route.matched[0].path, name: 'Volver'}
