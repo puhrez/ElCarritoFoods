@@ -519,7 +519,7 @@ nav.primary a.small button {
 
 }
 
-@media (min-width: 1050px), (orientation: landscape) {
+@media (min-width: 1050px), (min-aspect-ratio: 13/9) {
     #sign-up > article > section {
         flex-direction: row;
     }

@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import axios from 'axios'
 import router from './router'
 import store from './store'
 import ShoppingCartIcon from '@/components/ui/ShoppingCartIcon'
@@ -12,6 +13,7 @@ Vue.component('logo', Logo)
 Vue.component('order-button', OrderButton)
 Vue.component('shopping-cart', ShoppingCartIcon)
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({

@@ -33,10 +33,22 @@ export default {
     MaskedInput,
     Logo
   },
+  computed: {
+    submit_state () {
+      if (this.submitted && this.success) {
+        return 'Gracias'
+      } else if (this.submitted) {
+        return 'Sometiendo'
+      } else {
+        return 'Subscribir'
+      }
+    }
+  },
   data () {
     return {
       submitted: false,
-      phone: ''
+      phone: '',
+      success: false
     }
   },
   watch: {
@@ -47,7 +59,22 @@ export default {
   methods: {
     submit () {
       this.submitted = true
-      console.log('submitted!', this.phone)
+      let request = {
+        method: 'post',
+        url: 'https://gsspj51juf.execute-api.us-east-1.amazonaws.com/prod/AddSubscriber',
+        data: JSON.stringify({
+          phone: this.phone
+        })
+      }
+      this.$http(request)
+        .then(res => {
+          this.submitted = true
+          this.success = true
+        })
+        .catch(res => {
+          this.submitted = false
+          console.log('error', res)
+        })
     }
   }
 }

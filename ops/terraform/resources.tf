@@ -20,6 +20,10 @@ locals {
   domain_www = "www.${terraform.workspace == "prod" ? "" : format("%s.", terraform.workspace)}${var.domain-root}"
 }
 
+resource "aws_s3_bucket" "lambdas" {
+  bucket = "elcarritofoods-lambdas"
+}
+
 resource "aws_s3_bucket" "website" {
   bucket = "${local.domain}"
   acl    = "public-read"
@@ -130,4 +134,22 @@ resource "aws_route53_record" "www-secret" {
   name    = "www.secret"
   type    = "CNAME"
   records = ["${aws_s3_bucket.secret-website_www.website_domain}"]
+}
+
+resource "aws_dynamodb_table" "subscribers-table" {
+  name           = "Subscribers"
+  read_capacity  = 1
+  write_capacity = 1
+  hash_key       = "Phone"
+  range_key      = "OrdersCount"
+
+  attribute {
+    name = "Phone"
+    type = "S"
+  }
+
+  attribute {
+    name = "OrdersCount"
+    type = "N"
+  }
 }
