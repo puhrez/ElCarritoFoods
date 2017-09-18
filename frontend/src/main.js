@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 import store from './store'
 import ShoppingCartIcon from '@/components/ui/ShoppingCartIcon'
+import OrderButton from '@/components/ui/OrderButton'
+import Logo from '@/components/Logo'
 
+Vue.component('logo', Logo)
+Vue.component('order-button', OrderButton)
 Vue.component('shopping-cart', ShoppingCartIcon)
 Vue.config.productionTip = false
 

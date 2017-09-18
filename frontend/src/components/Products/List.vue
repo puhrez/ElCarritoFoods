@@ -1,21 +1,54 @@
 <template>
-	<section class="isolated-nav" :class="{ 'spaced-between': hasProducts }">
-		<nav>
-		  <router-link to="/products/product/adobo">
-                    <button :class="{ 'reserved': getProduct('adobo') }">El Adobo</button></router-link>
-		  <router-link to="/products/product/sazon">
-                    <button :class="{ 'reserved': getProduct('sazon') }">El Sazón</button></router-link>
-		</nav>
-		<router-link class="small" v-if="hasProducts" to="/order-review"><button class="doable">Ordenar</button></router-link>
-	</section>
+  <section id="product-list">
+    <article>
+      <header>
+        <h2>Catálogo</h2>
+        <shopping-cart></shopping-cart>
+      </header>
+      <section class="isolated-nav">
+        <nav v-if="products">
+          <router-link v-for="product in products"
+                       :key="product"
+                       :reserved="isReserved(product)"
+                       :to="`/products/product/${product}`">
+            <button :class="{'reserved': isReserved() }">{{ product }}
+            </button>
+          </router-link>
+        </nav>
+        <h2 v-else>Estos vagos no tienen ná</h2>
+      </section>
+      </article>
+    <order-button></order-button>
+  </section>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import Fullscreen from '../mixins/Fullscreen'
 
 export default {
   name: 'products-list',
+  mixins: [Fullscreen],
+  data () {
+    return {
+      products: []
+    }
+  },
+  created () {
+    this.getProducts()
+  },
+  methods: {
+    isReserved (p) {
+      return this.getProduct(p)
+    },
+    getProducts () {
+      this.products = [
+        'el adobo',
+        'el sazón'
+      ]
+    }
+  },
   computed: {
     ...mapGetters([
       'hasProducts',

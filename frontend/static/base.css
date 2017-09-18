@@ -50,51 +50,47 @@ button {
     border: none;
     cursor: pointer;
 }
+hr {
+    margin-left: 0;
+    margin-right: 0;
+}
 
 main {
+    height: 100vh;
     transition: height 300ms;
     display: flex;
     flex-direction: column;
-    font-family: 'Press Start 2P', sans-serif;
-    height: 100vh;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
     background-color: #FAFAFA;
+    overflow: auto;
+}
+
+main > a button.doable {
+    font-size: 7vh;
+    height: 15vh;
+}
+
+main > section {
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 section {
-    height: 85%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-section section {
-    width: 100%;
-}
-section section.spaced-between {
-    height: 100%;
 }
 
 svg {
+    position: relative;
     height: 100%;
     width: 100%;
-}
-
-
-nav {
-    width: 100%;
-    height: 18%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 0 10px #262626;
 }
 
 a {
-
     text-decoration: none;
     width: 100%;
-    height: 100%;
 }
 
 nav > .large, .large {
@@ -105,132 +101,154 @@ button {
     height: 100%;
     width: 100%;
     color: #FAFAFA;
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 16vw;
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
     background-color: #262626;
     transition: background-color .15s;
 }
 
 
-button:hover, button:disabled {
-    background-color: #878787;
-}
 
-
-section button.doable {
+a > button.doable, button.doable {
     color: #FAFAFA;
     background-color: #549c57;
 }
 
-section button.doable:hover {
+button.doable:hover {
     background-color: #48b54c;
 }
 
+button:hover, button:disabled, .unwanted.doable {
+    background-color: #878787;
+}
 
-section button.undoable {
+button.unwanted-doable:active, button.unwanted.doable:hover {
+    background-color: #262626;
+}
+
+button.undoable {
     background-color: #E53935;
 }
 
-section button.undoable:hover {
+button.undoable:hover {
     background-color: #ce4844;
 }
 
-
-section.isolated-nav {
-
-}
-
-section nav.small {
+nav.small {
     animation: from-bottom-animation .15s linear forwards;
 }
 section nav.small button {
     font-size: 5vh;
     background-color: #c6c6c6;
     color: #262626;
+    height: 13vh;
+    width: 100vw;
 }
 
 section nav.small button:hover {
     background-color: #878787;
 }
 
-section > section > a button.doable {
+section > section > button.doable {
     animation: from-bottom-animation .15s linear forwards;
     font-size: 7vh;
     color: #FAFAFA;
     box-shadow: 0 0 10px #262626;
 }
 
-.item-action-btn {
-    animation: appear-animation 100ms linear forwards;
-    box-shadow: 0 0 10px #262626;
-    margin-top: 3vh;
-    font-size: 8vw;
-    height: 20%;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vh;
 }
 
+form input {
+    background-color: #c6c6c6;
+    width: 100%;
+    height: 7vmin;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    padding: 1vmin 0;
+    font-size: 6vmin;
+    text-align: center;
+}
+
+
+
 section section article {
-    animation: from-bottom-animation .15s linear forwards;
+    animation: from-right-animation .15s linear forwards;
     height: 100%;
 }
 
 article {
-    animation: from-bottom-animation .15s linear forwards;
+    animation: from-right-animation .15s linear forwards;
     text-align: left;
-    width: 90%;
-    height: 100%;
-    overflow-x: hidden;
+    padding: 0 5%;
+    overflow: auto;
     overflow-y: scroll;
-    overflow-wrap: break-word;
-    padding-bottom: 15%;
+    display: flex;
+    flex-direction: column;
 }
-
+main > section > article {
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+}
 article > button {
     border-radius: 5px;
-    height: 16vh;
+    height: 15vh;
 }
 
 article > header {
-    margin-top: 3vh;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    animation: from-right-animation 200ms;
+    border-bottom: 2px solid #262626;
+    padding-bottom: 1vh;
+    width: 100%;
 }
-
+h2 {
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+}
 article > header h2 {
     color: #262626;
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 150%;
+    font-size: 3vmax;
 }
 
 article > header > svg {
     width: inherit;
 }
-article > header + hr {
-    margin-bottom: 3vh;
-}
-article > h4 {
+article h4 {
     color: #262626;
-    font-family: 'Press Start 2P', sans-serif;
-    margin-left: -.5vw;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
     margin-bottom: 2vh;
-    font-size: 120%;
+    font-size: 150%;
 }
 
+article p ~ p {
+    margin-top: 1vh;
+}
+article p + h4 {
+    margin-top: 2vh;
+    margin-bottom: .75vh;
+    display: inline;
+
+}
 article > section {
     align-items: flex-start;
-    height: auto;
 }
 
-article > section + section {
-    margin-top: 5vh;
+article > section:first-of-type {
+    margin-top: 2vh;
 }
 
-article > p, article li {
+article  p, article li {
     color: #262626;
-    font-family: 'Press Start 2P', sans-serif;
-    margin-bottom: 2vh;
-    line-height: 130%;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    line-height: 150%;
+    font-size: 3vmax;
+    width: 100%;
+}
+
+article li {
+    line-height: 200%;
 }
 
 div {
@@ -239,41 +257,85 @@ div {
     align-items: center;
     justify-content: space-between;
 }
+
+article section + hr {
+    margin-top: 4vh;
+}
+
+.menu-description {
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.last-button {
+    border-top-left-radius: 5px;
+    box-shadow: -2px 3px 10px #262626;
+}
+
+.item-action-btn {
+    animation: from-right-animation 200ms linear forwards;
+    box-shadow: 0 0 10px #262626;
+    margin-top: 3vh;
+    align-self: center;
+    padding: 0 2vw;
+    font-size: 140%;
+    height: 12vh;
+}
+
+
+.menu-description h4 {
+    margin-top: inherit;
+    align-self: flex-end;
+    margin-right: 2vw;
+}
 .fullscreen {
-    height: 121.5vh;
+    height: 115vh;
 }
 
 .price {
     align-items: flex-end;
-    margin-top: 4vh;
+    margin-top: 3vh;
 }
 #order-review .price h4 {
     margin-right: 3vw;
     font-style: initial;
 }
-.spaced-between {
-    justify-content: space-between;
+
+.order-action {
+    animation: appear-animation 100ms linear forwards;
+    width: 80%;
+    height: 12vh;
 }
-.spaced-between nav {
-    margin-top: 10%;
+a.order-action button {
+    font-size: 5vh;
 }
 
+.isolated-nav {
+    align-items: center;
+    height: 100%;
+}
 .isolated-nav nav {
+    box-shadow: 0 0 10px #262626;
     flex-direction: column;
-    animation: from-above-animation .15s linear forwards;
-    height: auto;
+    animation: from-right-animation .15s linear forwards;
     width: 85%;
 }
-.isolated-nav a {
-    height: 15vh;
-}
 
+.small > button:first-of-type {
+    box-shadow: 0 0 5px #262626;
+}
 .isolated-nav button {
-    font-size: 8vw;
+    height: 13vh;
+    font-size: 180%;
     color: #262626;
     background-color: #c6c6c6;
+
 }
 
+.isolated-nav a:not(:last-child) > button {
+    border-bottom: 2px dashed #262626;
+}
 .isolated-nav button:hover {
     background-color: #878787;
 }
@@ -281,12 +343,35 @@ div {
 .isolated-nav .reserved {
     background-color: #a1a1a1
 }
+
+.program-page > article {
+    height: 55%;
+}
+.quantity {
+    animation: from-right-animation 200ms linear forwards;
+}
 .quantity > div {
     margin-top: 2vh;
     flex-direction: row;
 }
+.quantity button:first-child {
+
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.quantity button:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.quantity h4 {
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    font-size: 3vh;
+}
 
 .quantity button {
+    box-shadow: 0 0 10px #262626;
     font-size: 14vw;
     padding: 0;
     width: 25vw;
@@ -305,6 +390,7 @@ div {
 }
 nav.primary a.small button {
     font-size: 8.5vh;
+    height: 15vh;
 }
 #para-llevar > button {
     height: 15%;
@@ -330,23 +416,28 @@ nav.primary a.small button {
     height: 8vh;
     width: 16vw;
     font-size: 4vh;
+    margin-right: 2vw;
 }
 
 #order-review h4 {
-    font-size: 3.5vh;
-    margin-bottom: 4vh;
-    font-style: italic;
+    font-size: 4vh;
+    margin-bottom: 2vh;
 }
-#order-review a {
-    height: 20%;
-    animation: from-bottom-animation .15s linear forwards;
+#order-review > a {
+    width: initial;
 }
-
+#order-review .doable {
+    height: 20vh;
+    animation: from-right-animation .15s linear forwards;
+    font-size: 10vh;
+    box-shadow: 0 0 10px #262626;
+}
 #products > a {
     height: 18vh;
     box-shadow: 0 0 10px #262626;
     animation: from-bottom-animation .15s linear forwards;
 }
+
 
 #product > article > .product-description {
     min-height: 30%;
@@ -358,17 +449,17 @@ nav.primary a.small button {
 
 #shopping-cart-icon {
     display: flex;
-    align-items: center;
-    animation: appear-animation 100ms linear forwards;
-    width: inherit;
-    height: inherit;
-
+    animation: from-right-animation 175ms linear forwards;
+    justify-content: flex-end;
+    font-size: 2vh;
+    color: #262626;
+    width: 100%;
 }
 #shopping-cart-icon h2 {
     position: relative;
 }
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 #mision #logo {
@@ -377,6 +468,17 @@ nav.primary a.small button {
 
 #contact a {
     text-decoration: underline;
+}
+
+#sign-up section {
+    align-items: center;
+}
+#sign-up #logo {
+    width: 90vmin;
+    height: 50vmax;
+}
+#sign-up section > section {
+    width: 85%
 }
 
 @media (min-width: 420px) and (orientation: landscape) {
@@ -417,96 +519,16 @@ nav.primary a.small button {
 
 }
 
-@media (min-width: 1050px) {
-    main {
-	flex-direction: row;
+@media (min-width: 1050px), (orientation: landscape) {
+    #sign-up > article > section {
+        flex-direction: row;
     }
-
-    main > section {
-	width: 75%;
-	height: 100%;
+    #sign-up section > section:last-child {
+        width: inherit;
     }
-    a.small, #para-llevar .small, nav.small {
-	display: none;
+    article p {
+        font-size: 2.75vmax;
     }
-    nav> a.large, .large {
-	display: inherit;
-    }
-    nav.primary {
-	height: 100%;
-	width: 25%;
-	display: flex;
-	flex-direction: column;
-	border-radius: 5px;
-
-    }
-    hr {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    nav.primary > button {
-	width: 100%;
-	border-radius: 5px;
-    }
-    nav button {
-	font-size: 2vw;
-    }
-
-    .isolated-nav {
-	width: 100%;
-    }
-    .isolated-nav nav {
-        align-self: center;
-    }
-    .fullscreen {
-	height: 100vh;
-    }
-    #para-llevar nav button {
-	font-size: 1.75vw;
-	padding: 0 0;
-    }
-    #para-llevar nav {
-	display: flex;
-	box-shadow: 0 0 20px #262626;
-	margin-bottom: 4vh;
-    }
-    .quantity > div {
-        width: 40%;
-    }
-    article {
-        display: flex;
-        flex-direction: column;
-    }
-    article button {
-        font-size: 3vh;
-    }
-    .item-action-btn {
-        font-size: 3vh;
-        align-self: center;
-        width: 50%;
-    }
-    section button.doable {
-        font-size: 5vh;
-    }
-
-    #products .isolated-nav {
-        margin-top: 5vh;
-        display: flex;
-    }
-    #products .isolated-nav nav {
-        width: auto;
-    }
-    .isolated-nav > a {
-        width: 50%;
-        align-self: center;
-    }
-
-    #products .isolated-nav button {
-        padding: 0 2vw;
-        font-size: 5vh;
-    }
-
 }
 
 @keyframes from-bottom-animation {
@@ -539,6 +561,18 @@ nav.primary a.small button {
     from {
         opacity: 0;
         transform: translateX(-100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+@keyframes from-right-animation {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
 }
 
     to {

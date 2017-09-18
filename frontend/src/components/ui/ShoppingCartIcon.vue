@@ -1,6 +1,6 @@
 <template>
   <router-link id="shopping-cart-icon"  to="/order-review">
-    <h2 :class="{'bouncesUp': bounceUp, 'bouncesDown': bounceDown }">$<span :class="{ 'blinks': !totalPrice }">{{ totalPrice || '_' }}</span></h2>
+    <h2 :class="{'bouncesUp': bounceUp, 'bouncesDown': bounceDown, 'doable': !totalPrice}">$<span :class="{ 'blinks': isEmpty() }">{{ price || totalPrice || '_' }}</span></h2>
   </router-link>
 </template>
 
@@ -10,6 +10,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'shopping-cart-icon',
+  props: ['price'],
   data () {
     return {
       bounceUp: false,
@@ -18,7 +19,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'totalPrice'
+      'totalPrice',
+      'isEmpty'
     ])
   },
   watch: {

@@ -25,13 +25,13 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
     reservations: load('reservations'),
-    cart: load('cart')
+    cart: load('cart'),
+    fullscreen: false
   },
   getters: {
     hasReservations: state => {
       return !!Object.values(state.reservations).length
     },
-
     reservations: state => {
       return Object.values(state.reservations)
     },
@@ -60,6 +60,9 @@ export default new Vuex.Store({
           return a.price * a.quantity
         })
         .reduce((a, b) => a + b, 0)
+    },
+    isFullscreen: state => {
+      return state.fullscreen
     }
   },
   mutations: {
@@ -82,6 +85,9 @@ export default new Vuex.Store({
       Vue.delete(state.cart, product)
       localStorage.setItem('cart', Object.keys(state.cart).join(','))
       localStorage.removeItem(product)
+    },
+    FULLSCREEN (state, option) {
+      state.fullscreen = option
     }
   }
 })

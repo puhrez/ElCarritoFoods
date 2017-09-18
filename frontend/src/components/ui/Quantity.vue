@@ -1,7 +1,7 @@
 <template>
   <div class="quantity">
     <h4>{{ label }}: {{ quantity }}</h4>
-    <div><button :disabled="quantity === 0" @click="less">-</button><button @click="more">+</button></div>
+    <div><button class="unwanted doable" :disabled="quantity === 0" @click="less">-</button><button class="doable" @click="more">+</button></div>
   </div>
 </template>
 
