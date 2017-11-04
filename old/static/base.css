@@ -1,0 +1,623 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+icle, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+    border: none;
+    cursor: pointer;
+}
+hr {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+main {
+    height: 100vh;
+    transition: height 300ms;
+    display: flex;
+    flex-direction: column;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    background-color: #FAFAFA;
+    overflow: auto;
+}
+
+main > a button.doable {
+    font-size: 7vh;
+    height: 15vh;
+}
+
+main > section {
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+svg {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+}
+
+nav > .large, .large {
+    display: none;
+}
+
+button {
+    height: 100%;
+    width: 100%;
+    color: #FAFAFA;
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    background-color: #262626;
+    transition: background-color .15s;
+}
+
+
+
+a > button.doable, button.doable {
+    color: #FAFAFA;
+    background-color: #549c57;
+}
+
+button.doable:hover {
+    background-color: #48b54c;
+}
+
+button:hover, button:disabled, .unwanted.doable {
+    background-color: #878787;
+}
+
+button.unwanted-doable:active, button.unwanted.doable:hover {
+    background-color: #262626;
+}
+
+button.undoable {
+    background-color: #E53935;
+}
+
+button.undoable:hover {
+    background-color: #ce4844;
+}
+
+nav.small {
+    animation: from-bottom-animation .15s linear forwards;
+}
+section nav.small button {
+    font-size: 5vh;
+    background-color: #c6c6c6;
+    color: #262626;
+    height: 13vh;
+    width: 100vw;
+}
+
+section nav.small button:hover {
+    background-color: #878787;
+}
+
+section > section > button.doable {
+    animation: from-bottom-animation .15s linear forwards;
+    font-size: 7vh;
+    color: #FAFAFA;
+    box-shadow: 0 0 10px #262626;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vh;
+}
+
+form input {
+    background-color: #c6c6c6;
+    width: 100%;
+    height: 7vmin;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    padding: 1vmin 0;
+    font-size: 6vmin;
+    text-align: center;
+}
+
+
+
+section section article {
+    animation: from-right-animation .15s linear forwards;
+    height: 100%;
+}
+
+article {
+    animation: from-right-animation .15s linear forwards;
+    text-align: left;
+    padding: 0 5%;
+    overflow: auto;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+main > section > article {
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+}
+article > button {
+    border-radius: 5px;
+    height: 15vh;
+}
+
+article > header {
+    animation: from-right-animation 200ms;
+    border-bottom: 2px solid #262626;
+    padding-bottom: 1vh;
+    width: 100%;
+    display: flex;
+
+}
+h2 {
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+}
+article > header h2 {
+    color: #262626;
+    font-size: 3vmax;
+}
+
+article > header > svg {
+    width: inherit;
+}
+article h4 {
+    color: #262626;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    margin-bottom: 2vh;
+    font-size: 150%;
+}
+
+article p ~ p {
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+article p + h4 {
+    margin-bottom: .75vh;
+    display: inline;
+
+}
+article > section {
+    align-items: flex-start;
+}
+
+article > section:first-of-type {
+    margin-top: 2vh;
+}
+
+article  p, article li {
+    color: #262626;
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    line-height: 150%;
+    font-size: 3vmax;
+    width: 100%;
+}
+
+article li {
+    line-height: 200%;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+article section + hr {
+    margin-top: 4vh;
+}
+
+.menu-description {
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.last-button {
+    border-top-left-radius: 5px;
+    box-shadow: -2px 3px 10px #262626;
+}
+
+.item-action-btn {
+    animation: from-right-animation 200ms linear forwards;
+    box-shadow: 0 0 10px #262626;
+    margin-top: 3vh;
+    align-self: center;
+    padding: 0 2vw;
+    font-size: 140%;
+    height: 20vh;
+}
+
+
+.menu-description h4 {
+    margin-top: inherit;
+    align-self: flex-end;
+    margin-right: 2vw;
+}
+.fullscreen {
+    height: 115vh;
+}
+
+.price {
+    align-items: flex-end;
+    margin-top: 3vh;
+}
+#order-review .price h4 {
+    margin-right: 3vw;
+    font-style: initial;
+}
+
+.order-action {
+    animation: appear-animation 100ms linear forwards;
+    width: 80%;
+    height: 12vh;
+}
+a.order-action button {
+    font-size: 5vh;
+}
+
+.isolated-nav {
+    align-items: center;
+    height: 100%;
+}
+.isolated-nav nav {
+    box-shadow: 0 0 10px #262626;
+    flex-direction: column;
+    animation: from-right-animation .15s linear forwards;
+    width: 85%;
+}
+
+.small > button:first-of-type {
+    box-shadow: 0 0 5px #262626;
+}
+.isolated-nav button {
+    height: 13vh;
+    font-size: 160%;
+    color: #262626;
+    background-color: #c6c6c6;
+
+}
+
+.isolated-nav a:not(:last-child) > button {
+    border-bottom: 2px dashed #262626;
+}
+.isolated-nav button:hover {
+    background-color: #878787;
+}
+
+.isolated-nav .reserved {
+    background-color: #a1a1a1
+}
+
+.program-page > article {
+    height: 55%;
+}
+.quantity {
+    animation: from-right-animation 200ms linear forwards;
+}
+.quantity > div {
+    margin-top: 2vh;
+    flex-direction: row;
+}
+.quantity button:first-child {
+
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.quantity button:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.quantity h4 {
+    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    font-size: 3vh;
+}
+
+.quantity button {
+    box-shadow: 0 0 10px #262626;
+    font-size: 14vw;
+    padding: 0;
+    width: 25vw;
+    height: 13vh;
+}
+
+#shopping-cart-icon span.blinks {
+    animation: infinite blinking 750ms steps(2, start);
+}
+
+#shopping-cart-icon h2.bouncesUp {
+    animation: 2 bounceUp 150ms ;
+}
+#shopping-cart-icon h2.bouncesDown {
+    animation: 2 bounceDown 150ms;
+}
+nav.primary a.small button {
+    font-size: 8.5vh;
+    height: 15vh;
+}
+#para-llevar > button {
+    height: 15%;
+    box-shadow: 0 0 20px #262626;
+    animation: from-left-animation .15s linear forwards;
+    opacity: 0;
+}
+
+#para-llevar-menu ol {
+    min-height: 30%;
+}
+#order-review ul {
+    width: 100%;
+}
+#order-review li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3vh;
+}
+#order-review li > button {
+    border-radius: 4px;
+    height: 8vh;
+    width: 16vw;
+    font-size: 4vh;
+    margin-right: 2vw;
+}
+
+#order-review h4 {
+    font-size: 4vh;
+    margin-bottom: 2vh;
+}
+#order-review > a {
+    width: initial;
+}
+#order-review .doable {
+    height: 20vh;
+    animation: from-right-animation .15s linear forwards;
+    font-size: 10vh;
+    box-shadow: 0 0 10px #262626;
+}
+#products > a {
+    height: 18vh;
+    box-shadow: 0 0 10px #262626;
+    animation: from-bottom-animation .15s linear forwards;
+}
+
+
+#product > article > .product-description {
+    min-height: 30%;
+    justify-content: flex-start;
+}
+#product > article > .product-description p + p {
+    margin-top: 5vh;
+}
+
+#shopping-cart-icon {
+    display: flex;
+    animation: from-right-animation 175ms linear forwards;
+    justify-content: flex-end;
+    font-size: 2vh;
+    color: #262626;
+    width: 100%;
+}
+#shopping-cart-icon h2 {
+    position: relative;
+}
+.hidden {
+    visibility: hidden;
+}
+
+#mision #logo {
+    height: 50%;
+}
+
+#contact a {
+    text-decoration: underline;
+}
+
+#sign-up section {
+    align-items: center;
+}
+#sign-up #logo {
+    width: 90vmin;
+    height: 50vmax;
+}
+#sign-up section > section {
+    width: 85%
+}
+
+@media (min-width: 420px) and (orientation: landscape) {
+    nav button  {
+	font-size: 13vw;
+    }
+}
+@media (min-width: 540px) and (orientation: landscape) {
+    nav button {
+	font-size: 14vw;
+    }
+}
+
+@media (min-width: 620px) {
+    nav button {
+	font-size: 11vw;
+    }
+    .isolated-nav a > button {
+	font-size: 7vw;
+    }
+
+}
+
+@media (min-width: 750px) {
+    nav button {
+	font-size: 9vw;
+    }
+
+}
+
+@media (min-width: 830px) {
+    nav button {
+	font-size: 8vw;
+    }
+    .isolated-nav a >button  {
+	font-size: 5vw;
+    }
+
+}
+
+@media (min-width: 1050px), (min-aspect-ratio: 13/9) {
+    #sign-up > article > section {
+        flex-direction: row;
+    }
+    #sign-up section > section:last-child {
+        width: inherit;
+    }
+    article p {
+        font-size: 2.75vmax;
+    }
+}
+
+@keyframes from-bottom-animation {
+    from {
+        opacity: 0;
+        transform: translateY(+100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+
+
+@keyframes from-above-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+@keyframes from-left-animation {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+@keyframes from-right-animation {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+}
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+@keyframes appear-animation {
+    from {
+        opacity: 0;
+        transform: scale(.5, .5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+
+@keyframes bounceUp {
+    0% {bottom: 0;}
+    10% {bottom: -0.1vh;}
+    50% {bottom: .25vh;}
+    90% {bottom: -0.1vh;}
+    100% {bottom: 0;}
+}
+
+@keyframes bounceDown {
+    0% {bottom: 0;}
+    10% {bottom: 0.1vh;}
+    50% {bottom: -.25vh;}
+    90% {bottom: 0.1vh;}
+    100% {bottom: 0;}
+}
+
+@keyframes blinking {
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blinking {
+  to {
+    visibility: hidden;
+  }
+}
