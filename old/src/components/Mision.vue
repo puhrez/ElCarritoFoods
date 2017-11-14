@@ -6,8 +6,8 @@
       </header>
       <logo></logo>
       <section>
-        <p>Nuestra comida es una proyeción del aire, agua, tierra e historia que nos rodee y nos compone.</p>
-        <p>Nuestra misión es proveer un servicio alimentario que promueve el consumo consciente y la interpretación creativa del contexto gastronómico local sin exclusión económica.</p>
+        <p>Nuestra comida es una proyeción del aire, agua, tierra e historia que nos rodea y nos compone.</p>
+        <p>Nuestra misión es proveer un servicio alimentario que promueva el consumo consciente y la interpretación creativa del contexto gastronómico local sin exclusión económica.</p>
       </section>
     </article>
   </section>

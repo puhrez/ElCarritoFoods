@@ -1,5 +1,5 @@
 <template>
-  <section id="la-cajita-sign-up">
+  <section id="el-carrito-sign-up">
     <article>
       <header>
         <h2>¿Tienes hambre?</h2>
@@ -7,12 +7,11 @@
       <section>
         <logo></logo>
         <section>
+          <article>
           <p>
-            ¡Entérate de los almuerzos y desayunos del Carrito Foods!
+            Con comida variada y saludable, precios accesibles y movilidad incomparable, el Carrito del Carrito Foods es la única solución para tu hambre que, como tú, está presente a todas horas, donde sea que estés.
           </p>
-          <p>
-            Con comida variada y saludable, precios accesibles y delivery gratis de Hato Rey a Río Piedras, no hay razones por qué no disfrutar de la Cajita del El Carrito Foods.
-          </p>
+          </article>
           <form @submit.prevent="submit">
             <masked-input v-model="phone" mask="(111) 111-1111" placeholder="(939) 666-1993" type="tel" pattern="\(\d{3}\)[\s]\d{3}[\-]\d{4}" required />
             <button class="item-action-btn" :disabled="submitted" :class="{doable: !submitted}">{{ submitted ? 'Gracias' : 'Subscribir' }}</button>

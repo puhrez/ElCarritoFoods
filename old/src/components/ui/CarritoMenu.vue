@@ -7,10 +7,12 @@
       </header>
       <section class="isolated-nav" :class="{ 'spaced-between': !isEmpty() }">
         <nav>
-          <router-link to="la-cajita"><button>La Cajita</button></router-link>
+          <router-link to="el-carrito"><button>El Carrito</button></router-link>
           <router-link to="catering"><button>Catering</button></router-link>
           <router-link to="mision"><button>Misión</button></router-link>
           <router-link to="contacto"><button>Contacto</button></router-link>
+          <a href="https://instagram.com/elcarrito.foods"><button>Instagram</button></a>
+          <a href="https://facebook.com/elcarrito.foods"><button>Facebook</button></a>
         </nav>
       </section>
     </article>
@@ -21,16 +23,15 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import Fullscreen from '../mixins/Fullscreen'
 
 export default {
   name: 'carrito-menu',
+  mixins: [Fullscreen],
   computed: {
     ...mapGetters([
       'isEmpty'
     ])
-  },
-  created () {
-    this.$store.commit('FULLSCREEN', false)
   }
 }
 </script>

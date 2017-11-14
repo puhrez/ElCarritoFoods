@@ -5,8 +5,8 @@ import Menu from '@/components/ui/CarritoMenu'
 import Catering from '@/components/Catering'
 import Mision from '@/components/Mision'
 import Contacto from '@/components/Contacto'
-import LaCajita from '@/components/LaCajita/LaCajita'
-import LaCajitaSignUp from '@/components/LaCajita/SignUp'
+import ElCarrito from '@/components/ElCarrito/ElCarrito'
+import ElCarritoSignUp from '@/components/ElCarrito/SignUp'
 import Instructions from '@/components/Instructions'
 
 Vue.use(Router)
@@ -45,13 +45,13 @@ const router = new Router({
       component: Instructions
     },
     {
-      path: '/la-cajita',
-      component: LaCajita,
+      path: '/el-carrito',
+      component: ElCarrito,
       children: [
         {
           name: 'Sign Up',
           path: '',
-          component: LaCajitaSignUp
+          component: ElCarritoSignUp
         }
       ]
     },

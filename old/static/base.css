@@ -60,7 +60,7 @@ main {
     transition: height 300ms;
     display: flex;
     flex-direction: column;
-    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: 'Roboto', Futura, Trebuchet MS, Arial, sans-serif;
     background-color: #FAFAFA;
     overflow: auto;
 }
@@ -101,7 +101,7 @@ button {
     height: 100%;
     width: 100%;
     color: #FAFAFA;
-    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     background-color: #262626;
     transition: background-color .15s;
 }
@@ -167,7 +167,7 @@ form input {
     background-color: #c6c6c6;
     width: 100%;
     height: 7vmin;
-    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     padding: 1vmin 0;
     font-size: 6vmin;
     text-align: center;
@@ -178,6 +178,7 @@ form input {
 section section article {
     animation: from-right-animation .15s linear forwards;
     height: 100%;
+    width: 100%;
 }
 
 article {
@@ -193,10 +194,15 @@ main > section > article {
     padding-top: 5vh;
     padding-bottom: 2vh;
 }
+
+section > section > article {
+    height: 35vh;
+}
 article > button {
     border-radius: 5px;
     height: 15vh;
 }
+
 
 article > header {
     animation: from-right-animation 200ms;
@@ -207,7 +213,7 @@ article > header {
 
 }
 h2 {
-    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
 }
 article > header h2 {
     color: #262626;
@@ -219,7 +225,7 @@ article > header > svg {
 }
 article h4 {
     color: #262626;
-    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     margin-bottom: 2vh;
     font-size: 150%;
 }
@@ -243,7 +249,7 @@ article > section:first-of-type {
 
 article  p, article li {
     color: #262626;
-    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     line-height: 150%;
     font-size: 3vmax;
     width: 100%;
@@ -282,7 +288,7 @@ article section + hr {
     align-self: center;
     padding: 0 2vw;
     font-size: 140%;
-    height: 20vh;
+    height: 15vh;
 }
 
 
@@ -315,7 +321,7 @@ a.order-action button {
 
 .isolated-nav {
     align-items: center;
-    height: 100%;
+    height: 100vh;
 }
 .isolated-nav nav {
     box-shadow: 0 0 10px #262626;
@@ -368,7 +374,7 @@ a.order-action button {
 }
 
 .quantity h4 {
-    font-family: 'Press Start 2P', Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     font-size: 3vh;
 }
 
@@ -380,6 +386,10 @@ a.order-action button {
     height: 13vh;
 }
 
+
+#la-cajita-sign-up, #el-carrito-sign-up #logo {
+    height: 55vh;
+}
 #shopping-cart-icon span.blinks {
     animation: infinite blinking 750ms steps(2, start);
 }
@@ -465,7 +475,7 @@ nav.primary a.small button {
 }
 
 #mision #logo {
-    height: 50%;
+    height: 55vh;
 }
 
 #contact a {

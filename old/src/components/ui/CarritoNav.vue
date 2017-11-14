@@ -1,7 +1,7 @@
 <template>
   <nav class="primary">
     <router-link class="small center" :to="appropriateRoute.path"><button>{{appropriateRoute.name}}</button></router-link>
-    <router-link class="large" to="/almuerzo"><button>Almuerzo</button></router-link>
+    <router-link class="large" to="/el-carrito"><button>El Carrito</button></router-link>
     <router-link class="large" to="/products"><button >Productos</button></router-link>
     <router-link class="large" to="/catering"><button>Catering</button></router-link>
     <router-link class="large" to="/mision"><button>Misión</button></router-link>
