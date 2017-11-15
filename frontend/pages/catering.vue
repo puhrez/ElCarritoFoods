@@ -17,7 +17,6 @@
 export default {
   name: 'catering'
 }
-
 </script>
 
 <script>

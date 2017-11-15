@@ -22,16 +22,11 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-import Fullscreen from '../mixins/Fullscreen'
+import Fullscreen from '~/components/Fullscreen.vue'
 
 export default {
   name: 'carrito-menu',
-  mixins: [Fullscreen],
-  computed: {
-    ...mapGetters([
-      'isEmpty'
-    ])
+  mixins: [Fullscreen]
   }
 }
 </script>
