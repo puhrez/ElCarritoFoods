@@ -1,7 +1,10 @@
 <template>
   <main id="app" :class="{'fullscreen': isFullscreen }">
-    <nuxt/>
-    <carrito-nav/>
+    <section>
+      <nuxt/>
+      <carrito-menu class="large" />
+    </section>
+    <carrito-nav class="small"/>
   </main>
 </template>
 
@@ -9,6 +12,7 @@
 
 import { mapGetters } from 'vuex'
 import CarritoNav from '~/components/CarritoNav.vue'
+import CarritoMenu from '~/components/CarritoMenu'
 export default {
   computed: {
     ...mapGetters([
@@ -16,7 +20,8 @@ export default {
     ])
   },
   components: {
-    CarritoNav
+    CarritoNav,
+    CarritoMenu
   }
 }
 </script>

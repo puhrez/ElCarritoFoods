@@ -7,16 +7,14 @@
       <section>
         <logo></logo>
         <section>
-          <article>
-            <p>
-              Con comida variada y saludable, precios accesibles y movilidad incomparable, el Carrito del Carrito Foods es la única solución para tu hambre.
-            </p>
-            <p>
-              ¡Suscríbete abajo para enterarte de nuestros inventos!
-            </p>
-          </article>
+          <p>
+            Con comida variada y saludable, precios accesibles y movilidad incomparable, el Carrito del Carrito Foods es la única solución para tu hambre.
+          </p>
+          <p>
+            ¡Suscríbete abajo para enterarte de nuestros inventos!
+          </p>
           <form @submit.prevent="submit">
-            <the-mask v-model="phone" mask="(###) ###-####" placeholder="(939) 666-1993" type="tel" pattern="\(\d{3}\)[\s]\d{3}[\-]\d{4}" required />
+            <the-mask v-model="phone" mask="(###) ###-####" placeholder="(___) ___-____" type="tel" pattern="\(\d{3}\)[\s]\d{3}[\-]\d{4}" required />
             <button class="item-action-btn" :disabled="submitted" :class="{doable: !submitted}">{{ submitted ? 'Gracias' : 'Subscribir' }}</button>
           </form>
         </section>

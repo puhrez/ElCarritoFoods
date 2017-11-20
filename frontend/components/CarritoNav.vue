@@ -1,11 +1,6 @@
 <template>
   <nav class="primary">
     <nuxt-link class="small center" :to="appropriateRoute.path"><button>{{appropriateRoute.name}}</button></nuxt-link>
-    <nuxt-link class="large" to="/el-carrito"><button>El Carrito</button></nuxt-link>
-    <nuxt-link class="large" to="/products"><button >Productos</button></nuxt-link>
-    <nuxt-link class="large" to="/catering"><button>Catering</button></nuxt-link>
-    <nuxt-link class="large" to="/mision"><button>Misión</button></nuxt-link>
-    <nuxt-link class="large" to="/contacto"><button>Contacto</button></nuxt-link>
   </nav>
 </template>
 

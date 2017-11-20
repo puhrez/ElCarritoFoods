@@ -5,29 +5,25 @@
         <h2>Menú</h2>
         <shopping-cart></shopping-cart>
       </header>
-      <section class="isolated-nav">
-        <nav>
-          <nuxt-link to="/el-carrito"><button>El Carrito</button></nuxt-link>
-          <nuxt-link to="/catering"><button>Catering</button></nuxt-link>
-          <nuxt-link to="/mision"><button>Misión</button></nuxt-link>
-          <nuxt-link to="/contacto"><button>Contacto</button></nuxt-link>
-          <a href="https://instagram.com/elcarrito.foods"><button>Instagram</button></a>
-          <a href="https://facebook.com/elcarrito.foods"><button>Facebook</button></a>
-        </nav>
+      <carrito-menu class="small"/>
+      <section class="large">
+        <logo />
       </section>
     </article>
   </section>
 </template>
 
 <script>
-
-import Fullscreen from '~/components/mixins/Fullscreen'
+import CarritoMenu from '~/components/CarritoMenu'
 import ShoppingCart from '~/components/ShoppingCartIcon'
+import Logo from '~/components/Logo'
+
 export default {
-  name: 'carrito-menu',
-  mixins: [Fullscreen],
+  name: 'menu-page',
   components: {
-    ShoppingCart
+    ShoppingCart,
+    CarritoMenu,
+    Logo
   }
 }
 </script>

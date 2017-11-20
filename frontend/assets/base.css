@@ -67,7 +67,7 @@ main {
     transition: height 300ms;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', Futura, Trebuchet MS, Arial, sans-serif;
+    font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     background-color: #FAFAFA;
     overflow: auto;
 }
@@ -78,12 +78,16 @@ main > a button.doable {
 }
 
 main > section {
-    height: 100%;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 section {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,6 +97,10 @@ svg {
     position: relative;
     height: 100%;
     width: 100%;
+}
+
+article svg {
+    height: 100vh;
 }
 
 a {
@@ -105,10 +113,9 @@ nav > .large, .large {
 }
 
 button {
-    height: 100%;
     width: 100%;
     color: #FAFAFA;
-    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
+    font-family: 'Bungee', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     background-color: #262626;
     transition: background-color .15s;
 }
@@ -152,11 +159,8 @@ section > section > button.doable {
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-bottom: 2vh;
     width: 100%;
-    margin-top: 2vh;
 }
 
 form input {
@@ -175,26 +179,24 @@ section section article {
     animation: from-right-animation .15s linear forwards;
     height: 100%;
     width: 100%;
+    padding: 0;
 }
 
 article {
     animation: from-right-animation .15s linear forwards;
     text-align: left;
     padding: 0 5%;
-    width: 90%;
-    overflow: auto;
-    overflow-y: scroll;
+    padding-top: 3vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
-main > section > article {
+main > section > section > article {
     padding-top: 5vh;
-    padding-bottom: 2vh;
+    width: 90%;
+    align-items: center;
 }
 
-section > section > article {
-    height: 100%;
-}
 article > button {
     border-radius: 5px;
     height: 15vh;
@@ -205,18 +207,21 @@ article > header {
     animation: from-right-animation 200ms;
     border-bottom: 2px solid #262626;
     padding-bottom: 1vh;
-    width: 100%;
-    display: flex;
 
 }
+
 h2 {
-    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
+    font-family: 'Bungee', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
 }
 article > header h2 {
     color: #262626;
-    font-size: 3vmax;
+    float: left;
+    font-size: 5vmax;
 }
-
+article > header h2:only-child {
+    float: none;
+    text-align: center;
+}
 article > header > svg {
     width: inherit;
 }
@@ -224,7 +229,8 @@ article h4 {
     color: #262626;
     font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     margin-bottom: 2vh;
-    font-size: 150%;
+    font-size: 3vmax;
+    font-weight: bold;
 }
 
 section#contact article p {
@@ -238,16 +244,19 @@ article p ~ p {
 article p + h4 {
     margin-bottom: .75vh;
     display: inline;
+    align-self: flex-start;
 
 }
 article > section {
-    align-items: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    width: 90%;
+    padding: 0 5%;
 }
 
-article > section:first-of-type {
-    margin-top: 2vh;
+article > section > section:only-child {
+    padding-top: 2vh;
 }
-
 article  p, article li {
     color: #262626;
     font-family: Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
@@ -271,12 +280,14 @@ article section + hr {
     margin-top: 4vh;
 }
 
+.fullscreen {
+    height: 115vh;
+}
 .menu-description {
     flex-direction: row;
     justify-content: space-between;
 
 }
-
 .last-button {
     border-top-left-radius: 5px;
     box-shadow: -2px 3px 10px #262626;
@@ -288,8 +299,8 @@ article section + hr {
     margin-top: 3vh;
     align-self: center;
     padding: 0 2vw;
-    font-size: 140%;
-    height: 15vh;
+    font-size: 7vmin;
+    height: 14vmin;
 }
 
 
@@ -297,9 +308,6 @@ article section + hr {
     margin-top: inherit;
     align-self: flex-end;
     margin-right: 2vw;
-}
-.fullscreen {
-    height: 115vh;
 }
 
 .price {
@@ -321,25 +329,39 @@ a.order-action button {
 }
 
 .isolated-nav {
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    padding: 2.5vh;
+    margin-top: initial;
+    height: 100%;
+    width: 80%;
+}
+.isolated-nav.large {
+    width: 30%;
 }
 .isolated-nav nav {
     box-shadow: 0 0 10px #262626;
     flex-direction: column;
     animation: from-right-animation .15s linear forwards;
-    width: 85%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background-color: #c6c6c6;
 }
 
 .small > button:first-of-type {
     box-shadow: 0 0 5px #262626;
 }
+.isolated-nav a {
+    display: flex;
+    flex: 1;
+    margin: inherit;
+    min-height: 10vh;
+}
 .isolated-nav button {
-    height: 13vh;
-    font-size: 160%;
+    font-size: 5vh;
     color: #262626;
     background-color: #c6c6c6;
-
 }
 
 .isolated-nav a:not(:last-child) > button {
@@ -375,7 +397,7 @@ a.order-action button {
 }
 
 .quantity h4 {
-    font-family: 'Press Start 2P', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
+    font-family: 'Bungee', Futura, 'Roboto', Trebuchet MS, Arial, sans-serif;
     font-size: 3vh;
 }
 
@@ -387,9 +409,8 @@ a.order-action button {
     height: 13vh;
 }
 
-
-#la-cajita-sign-up, #el-carrito-sign-up #logo {
-    height: 55vh;
+#menu header {
+    width: 100%;
 }
 #shopping-cart-icon span.blinks {
     animation: infinite blinking 750ms steps(2, start);
@@ -401,8 +422,15 @@ a.order-action button {
 #shopping-cart-icon h2.bouncesDown {
     animation: 2 bounceDown 150ms;
 }
+nav.primary {
+    position: relative;
+    bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
 nav.primary a.small button {
-    font-size: 8.5vh;
+    font-size: 10vh;
+    padding: 0;
     height: 15vh;
     width: 100vw;
 }
@@ -467,7 +495,9 @@ nav.primary a.small button {
     justify-content: flex-end;
     font-size: 2vh;
     color: #262626;
-    width: 100%;
+    width: initial;
+    pointer-events: none;
+    cursor: default;
 }
 #shopping-cart-icon h2 {
     position: relative;
@@ -476,75 +506,54 @@ nav.primary a.small button {
     visibility: hidden;
 }
 
-#mision #logo {
-    height: 55vh;
-}
-
 #contact a {
     text-decoration: underline;
 }
 
-#sign-up section {
-    align-items: center;
-}
-#sign-up #logo {
-    width: 90vmin;
-    height: 50vmax;
-}
-#sign-up section > section {
-    width: 85%
-}
-
-@media (min-width: 420px) and (orientation: landscape) {
-    nav button  {
-	font-size: 13vw;
-    }
-}
-@media (min-width: 540px) and (orientation: landscape) {
-    nav button {
-	font-size: 14vw;
-    }
-}
-
-@media (min-width: 620px) {
-    nav button {
-	font-size: 11vw;
-    }
-    .isolated-nav a > button {
-	font-size: 7vw;
-    }
-
-}
-
-@media (min-width: 750px) {
-    nav button {
-	font-size: 9vw;
-    }
-
-}
-
-@media (min-width: 830px) {
-    nav button {
-	font-size: 8vw;
-    }
-    .isolated-nav a >button  {
-	font-size: 5vw;
-    }
-
-}
-
 @media (min-width: 1050px), (min-aspect-ratio: 13/9) {
-    #el-carrito-sign-up > article {
-        height: 100%
-    }
-    #el-carrito-sign-up > article > section {
+    main > section {
         flex-direction: row;
     }
-    #el-carrito-sign-up section > section:last-child {
+    article > section {
+        flex-direction: row;
+        height: 100%;
+    }
+    article > section > section:last-child {
         width: inherit;
+        justify-content: center;
+    }
+    article > section > section:only-child {
+        justify-content: flex-start;
+        padding-top: 5vmax;
+    }
+    article > header h2 {
+        font-size: 6vmax;
+    }
+    #menu #logo {
+        height: 90vh;
+    }
+    .large {
+        display: inherit;
+    }
+    .small {
+        display: none;
+    }
+    article svg {
+        height: 55vh;
     }
     article p {
-        font-size: 2.5vmax;
+        font-size: 4vmin;
+    }
+    .fullscreen {
+        height: 100vh;
+    }
+
+    nav.primary {
+        align-self: center;
+    }
+
+    .item-action-btn {
+        height: 10vmin;
     }
 }
 

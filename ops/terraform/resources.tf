@@ -5,19 +5,20 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "domain-root" {
+variable "domain" {
   default = "elcarritofoods.com"
+}
+
+locals {
+  domain_www     = "www.${var.domain}"
+  domain_dev     = "dev.${var.domain}"
+  domain_dev_www = "www.dev.${var.domain}"
 }
 
 provider "aws" {
   region     = "${var.region}"
   secret_key = "${var.secret_key}"
   access_key = "${var.access_key}"
-}
-
-locals {
-  domain     = "${terraform.workspace == "prod" ? "" : format("%s.", terraform.workspace)}${var.domain-root}"
-  domain_www = "www.${terraform.workspace == "prod" ? "" : format("%s.", terraform.workspace)}${var.domain-root}"
 }
 
 resource "aws_s3_bucket" "log_bucket" {
@@ -30,7 +31,16 @@ resource "aws_s3_bucket" "lambdas" {
 }
 
 resource "aws_s3_bucket" "website" {
-  bucket = "${local.domain}"
+  bucket = "${var.domain}"
+  acl    = "public-read"
+
+  website {
+    index_document = "index.html"
+  }
+}
+
+resource "aws_s3_bucket" "website_dev" {
+  bucket = "${local.domain_dev}"
   acl    = "public-read"
 
   website {
@@ -43,16 +53,16 @@ resource "aws_s3_bucket" "website_www" {
   acl    = "public-read"
 
   website {
-    redirect_all_requests_to = "${local.domain}"
+    redirect_all_requests_to = "${var.domain}"
   }
 }
 
-resource "aws_s3_bucket" "secret-website" {
-  bucket = "secret.${var.domain-root}"
+resource "aws_s3_bucket" "website_dev_www" {
+  bucket = "${local.domain_dev_www}"
   acl    = "public-read"
 
   website {
-    index_document = "index.html"
+    redirect_all_requests_to = "${local.domain_dev}"
   }
 }
 
@@ -60,31 +70,28 @@ data "aws_acm_certificate" "cert_global" {
   domain = "elcarritofoods.com"
 }
 
-resource "aws_s3_bucket" "secret-website_www" {
-  bucket = "www.secret.${var.domain-root}"
-  acl    = "public-read"
-
-  website {
-    redirect_all_requests_to = "${aws_s3_bucket.secret-website.website_domain}"
-  }
-}
-
 resource "aws_cloudfront_distribution" "website_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.website.bucket_domain_name}"
-    origin_id   = "${terraform.workspace == "prod" ? "" : format(".%s", terraform.workspace)}_elcarritofoods_website"
+    domain_name = "${aws_s3_bucket.website.website_endpoint}"
+    origin_id   = "elcarritofoods_website"
+
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"]
+    }
   }
 
-  enabled             = true
-  is_ipv6_enabled     = true
-  default_root_object = "index.html"
+  enabled         = true
+  is_ipv6_enabled = true
 
   logging_config {
     bucket = "${aws_s3_bucket.log_bucket.bucket_domain_name}"
     prefix = "website"
   }
 
-  aliases = ["${local.domain_www}"]
+  aliases = ["${var.domain}", "${local.domain_www}"]
 
   restrictions {
     geo_restriction {
@@ -95,7 +102,7 @@ resource "aws_cloudfront_distribution" "website_distribution" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${terraform.workspace == "prod" ? "" : format(".%s", terraform.workspace)}_elcarritofoods_website"
+    target_origin_id = "elcarritofoods_website"
     compress         = true
 
     forwarded_values {
@@ -106,7 +113,7 @@ resource "aws_cloudfront_distribution" "website_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -120,7 +127,7 @@ resource "aws_cloudfront_distribution" "website_distribution" {
 }
 
 resource "aws_route53_zone" "elcarritofoods" {
-  name = "${var.domain-root}."
+  name = "${var.domain}."
 }
 
 resource "aws_route53_record" "zoho" {
@@ -134,7 +141,7 @@ resource "aws_route53_record" "zoho" {
 resource "aws_route53_record" "mail" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
   ttl     = "14400"
-  name    = "${var.domain-root}"
+  name    = "${var.domain}"
   type    = "MX"
   records = ["10 mx.zoho.com", "20 mx2.zoho.com"]
 }
@@ -142,7 +149,7 @@ resource "aws_route53_record" "mail" {
 resource "aws_route53_record" "spf" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
   ttl     = "14400"
-  name    = "${var.domain-root}"
+  name    = "${var.domain}"
   type    = "TXT"
   records = ["v=spf1 include:zoho.com ~all"]
 }
@@ -157,7 +164,7 @@ resource "aws_route53_record" "dkim" {
 
 resource "aws_route53_record" "alias" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
-  name    = "${local.domain}"
+  name    = "${var.domain}"
   type    = "A"
 
   alias {
@@ -169,7 +176,7 @@ resource "aws_route53_record" "alias" {
 
 resource "aws_route53_record" "aaaalias" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
-  name    = "${local.domain}"
+  name    = "${var.domain}"
   type    = "AAAA"
 
   alias {
@@ -179,21 +186,9 @@ resource "aws_route53_record" "aaaalias" {
   }
 }
 
-resource "aws_route53_record" "secret-alias" {
-  zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
-  name    = "secret"
-  type    = "A"
-
-  alias {
-    zone_id                = "${aws_s3_bucket.secret-website.hosted_zone_id}"
-    name                   = "${aws_s3_bucket.secret-website.website_domain}"
-    evaluate_target_health = true
-  }
-}
-
 resource "aws_route53_record" "www" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
-  name    = "www${terraform.workspace == "prod" ? "" : format(".%s", terraform.workspace)}"
+  name    = "www"
   type    = "A"
 
   alias {
@@ -205,7 +200,7 @@ resource "aws_route53_record" "www" {
 
 resource "aws_route53_record" "aaaawww" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
-  name    = "www${terraform.workspace == "prod" ? "" : format(".%s", terraform.workspace)}"
+  name    = "www"
   type    = "AAAA"
 
   alias {
@@ -215,12 +210,24 @@ resource "aws_route53_record" "aaaawww" {
   }
 }
 
-resource "aws_route53_record" "www-secret" {
+resource "aws_route53_record" "alias_dev" {
+  zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
+  name    = "dev"
+  type    = "A"
+
+  alias {
+    zone_id                = "${aws_s3_bucket.website_dev.hosted_zone_id}"
+    name                   = "${aws_s3_bucket.website_dev.website_domain}"
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "cname_dev_www" {
   zone_id = "${aws_route53_zone.elcarritofoods.zone_id}"
   ttl     = "14400"
-  name    = "www.secret"
+  name    = "www.dev"
   type    = "CNAME"
-  records = ["${aws_s3_bucket.secret-website_www.website_domain}"]
+  records = ["${aws_s3_bucket.website_dev_www.website_domain}"]
 }
 
 resource "aws_dynamodb_table" "subscribers-table" {

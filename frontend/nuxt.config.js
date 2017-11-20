@@ -21,14 +21,15 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Bungee|Rubik:400' }
     ]
   },
   modules: [
     '@nuxtjs/axios'
   ],
   css: [
-    '@/static/base.css'
+    '@/assets/normalize.css',
+    '@/assets/base.css'
   ],
   /*
   ** Customize the progress bar color

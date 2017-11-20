@@ -11,7 +11,7 @@ build:	## Build for prod
 	npm run generate
 
 push: 	## Push to aws
-	aws s3 sync dist s3://${DOMAIN_PREFIX}elcarritofoods.com --acl "public-read"
+	aws s3 sync dist s3://${DOMAIN_PREFIX}elcarritofoods.com --acl "public-read" --cache-control max-age=86400 --expires "2034-01-01T00:00:00Z"
 
 deploy: build push ## Build for prod & push to AWS
 
