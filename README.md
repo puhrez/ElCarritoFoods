@@ -6,4 +6,4 @@ El Carrito Foods is a food business from Puerto Rico focused on delivering moder
 This is the repo for its web things. One day this will might be moved to an org, but not today.
 
 
-[https://elcarritofoods.com](The Website)
+https://elcarritofoods.com
